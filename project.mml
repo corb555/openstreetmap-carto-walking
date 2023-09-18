@@ -55,7 +55,74 @@ Stylesheet:
   - style/addressing.mss
   - style/golf.mss
   - style/tourism.mss
+  - style/contours.mss
+
 Layer:
+  - id: contours10
+    geometry: multilinestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way
+         FROM contour
+         WHERE height::int % 50 != 0 AND height::int % 200 != 0
+        ) AS contours10
+    properties:
+      minzoom: 16
+  - id: contours50
+    geometry: multilinestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way
+         FROM contour
+         WHERE height::int % 50 = 0 AND height::int % 200 != 0
+        ) AS contours50
+    properties:
+      minzoom: 14
+  - id: contours200
+    geometry: multilinestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way
+         FROM contour
+         WHERE height::int % 200 = 0
+        ) AS contours200
+    properties:
+      minzoom: 12
+  - id: contours-text50
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way, height
+         FROM contour
+         WHERE height::int % 50 = 0 AND height::int % 200 != 0
+         ) AS contours_text50
+    properties:
+      minzoom: 16
+  - id: contours-text200
+    geometry: linestring
+    <<: *extents
+    Datasource:
+      <<: *osm2pgsql
+      table: |-
+        (SELECT
+            way, height
+         FROM contour
+         WHERE height::int % 200 = 0
+        ) AS contours_text200
+    properties:
+      minzoom: 12
   - id: landcover-low-zoom
     geometry: polygon
     <<: *extents
@@ -200,7 +267,7 @@ Layer:
             CASE WHEN tags->'intermittent' IN ('yes')
               OR tags->'seasonal' IN ('yes', 'spring', 'summer', 'autumn', 'winter', 'wet_season', 'dry_season')
               THEN 'yes' ELSE 'no' END AS int_intermittent,
-            CASE WHEN tunnel IN ('yes', 'culvert') 
+            CASE WHEN tunnel IN ('yes', 'culvert')
               OR waterway = 'canal' AND tunnel = 'flooded'
               THEN 'yes' ELSE 'no' END AS int_tunnel,
             'no' AS bridge
@@ -895,7 +962,7 @@ Layer:
             CASE WHEN tags->'intermittent' IN ('yes')
               OR tags->'seasonal' IN ('yes', 'spring', 'summer', 'autumn', 'winter', 'wet_season', 'dry_season')
               THEN 'yes' ELSE 'no' END AS int_intermittent,
-            CASE WHEN tunnel IN ('yes', 'culvert') 
+            CASE WHEN tunnel IN ('yes', 'culvert')
               OR waterway = 'canal' AND tunnel = 'flooded'
               THEN 'yes' ELSE 'no' END AS int_tunnel,
             'yes' AS bridge
@@ -1561,7 +1628,7 @@ Layer:
               COALESCE(
                 'aeroway_' || CASE WHEN aeroway IN ('gate', 'apron', 'helipad', 'aerodrome') THEN aeroway END,
                 'tourism_' || CASE WHEN tourism IN ('alpine_hut', 'apartment', 'artwork', 'camp_site', 'caravan_site', 'chalet', 'gallery', 'guest_house',
-                                                    'hostel', 'hotel', 'motel', 'museum', 'picnic_site', 'theme_park', 'wilderness_hut',
+                                                    'hostel', 'hotel', 'motel', 'museum', 'picnic_site', 'theme_park', 'wilderness_hut','aquarium',
                                                     'zoo') THEN tourism END,
                 'amenity_' || CASE WHEN amenity IN ('arts_centre', 'atm', 'bank', 'bar', 'bbq', 'bicycle_rental',
                                                     'bicycle_repair_station','biergarten', 'boat_rental', 'bureau_de_change', 'bus_station', 'cafe',
@@ -1625,7 +1692,7 @@ Layer:
               ) AS feature,
               CASE WHEN access IN ('private', 'no', 'customers', 'permit', 'delivery') THEN 'restricted' ELSE 'yes' END AS int_access,
               CASE
-                WHEN "natural" IN ('peak', 'volcano', 'saddle') 
+                WHEN "natural" IN ('peak', 'volcano', 'saddle')
                      OR tags->'mountain_pass' = 'yes' THEN
                   CASE
                     WHEN tags->'ele' ~ '^-?\d{1,4}(\.\d+)?$' THEN (tags->'ele')::NUMERIC
@@ -2206,7 +2273,7 @@ Layer:
             CASE WHEN tags->'intermittent' IN ('yes')
               OR tags->'seasonal' IN ('yes', 'spring', 'summer', 'autumn', 'winter', 'wet_season', 'dry_season')
               THEN 'yes' ELSE 'no' END AS int_intermittent,
-            CASE WHEN tunnel IN ('yes', 'culvert') 
+            CASE WHEN tunnel IN ('yes', 'culvert')
               OR waterway = 'canal' AND tunnel = 'flooded'
               THEN 'yes' ELSE 'no' END AS int_tunnel
           FROM planet_osm_line

@@ -39,7 +39,7 @@ local polygon_keys = {
 
 -- Objects with any of the following key/value combinations will be treated as linestring
 local linestring_values = {
-    golf = {cartpath = true, hole = true, path = true}, 
+    golf = {cartpath = true, hole = true, path = true},
     emergency = {designated = true, destination = true, no = true, official = true, yes = true},
     historic = {citywalls = true},
     leisure = {track = true, slipway = true},
@@ -208,7 +208,7 @@ local roads_info = {
         path            = {z = 100, roads = false},
         footway         = {z = 100, roads = false},
         bridleway       = {z = 100, roads = false},
-        cycleway        = {z = 100, roads = false},
+        cycleway        = {z = 385, roads = false},
         steps           = {z = 90,  roads = false},
         platform        = {z = 90,  roads = false}
     },
