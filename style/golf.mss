@@ -1,4 +1,5 @@
-@golf-color: #666;
+
+@golf_course: #B6C69D;
 
 #landcover[zoom >= 12] {
   ::high-zoom[zoom >= 12] {
@@ -6,12 +7,12 @@
     [feature = 'golf_fairway'],
     [feature = 'golf_rough'],
     [feature = 'golf_driving_range'] {
-      polygon-fill: @grass;
+      polygon-fill: @golf_course;
     }
   }
   ::high-zoom[zoom >= 13] {
     [feature = 'golf_green'] {
-      polygon-fill: @pitch;
+      polygon-fill: @golf_course;
     }
     [feature = 'golf_bunker'] {
       polygon-fill: @sand;
@@ -26,7 +27,7 @@
 
 #golf-line[zoom >= 16] {
   [golf = 'hole'] {
-    line-color: @golf-color;
+    line-color: @golf_course;
     line-width: 0.5;
   }
 }
@@ -36,7 +37,7 @@
   [feature = 'golf_hole'][name != ''] {
     text-placement: line;
     text-size: 11;
-    text-fill: @golf-color;
+    text-fill: @golf_course;
     text-face-name: @book-fonts;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -51,7 +52,7 @@
 #amenity-points[zoom >= 16] {
   [feature = 'golf_pin'] {
     marker-file: url('symbols/leisure/golf_pin.svg');
-    marker-fill: @golf-color;
+    marker-fill: @golf_course;
     marker-clip: false;
   }
 }
@@ -60,7 +61,7 @@
   [feature = 'golf_pin'][ref != ''] {
     text-name: "[ref]";
     text-size: @standard-font-size;
-    text-fill: @golf-color;
+    text-fill: @golf_course;
     text-face-name: @book-fonts;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;

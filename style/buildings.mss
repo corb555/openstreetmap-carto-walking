@@ -1,37 +1,54 @@
-@building-fill: #d9d0c9;  // Lch(84, 5, 68)
+@building-fill: #CEC5AC;  // Lch(84, 5, 68)
 @building-line: darken(@building-fill, 15%);  // Lch(70, 9, 66)
 @building-low-zoom: darken(@building-fill, 4%);
 
-@building-major-fill: darken(@building-fill, 10%);  // Lch(75, 8, 67)
-@building-major-line: darken(@building-major-fill, 15%);  // Lch(61, 13, 65)
-@building-major-z15: darken(@building-major-fill, 5%);  // Lch(70, 9, 66)
-@building-major-z14: darken(@building-major-fill, 10%);  // Lch(66, 11, 65)
+@building-major-fill: darken(@building-fill, 18%);  // Lch(75, 8, 67)
+@building-major-line: darken(@building-major-fill, 20%);  // Lch(61, 13, 65)
+@building-major-z15: darken(@building-major-fill, 16%);  // Lch(70, 9, 66)
+@building-major-z14: darken(@building-major-fill, 16%);  // Lch(66, 11, 65)
+
+@building-religious: #E1BE5E;
 
 @entrance-permissive: darken(@building-line, 15%);
 @entrance-normal: @building-line;
 
+@transit_line: #9D31B5;
+@building-transit: desaturate(lighten(@transit_line, 10),30);
+
 #buildings {
-  [zoom >= 14] {
+  [zoom >= 14] [building != 'stadium']  {
     polygon-fill: @building-low-zoom;
     polygon-clip: false;
     [zoom >= 15] {
       polygon-fill: @building-fill;
       line-color: @building-line;
-      line-width: .75;
+      line-width: 0;
       line-clip: false;
     }
-    [amenity = 'place_of_worship'],
     [aeroway = 'terminal'],
     [aerialway = 'station'],
     [building = 'train_station'],
+    [building = 'transportation'],
     [public_transport = 'station'] {
-      polygon-fill: @building-major-z14;
+      polygon-fill: @building-transit;
       [zoom >= 15] {
-        polygon-fill: @building-major-z15;
+        polygon-fill: @building-transit;
+        polygon-gamma: 0.2;
         line-color: @building-major-line;
-        [zoom >= 16] {
-          polygon-fill: @building-major-fill;
-        }
+      }
+    }
+
+    [building = 'temple'],
+    [building='church'],
+    [building='shrine'],
+    [building = 'cathedral'],
+    [building='mosque'],
+    [building='gurdwara'],
+    [building='synagogue'] {
+      polygon-fill: @building-religious;
+      [zoom >= 15] {
+        polygon-fill: @building-religious;
+        line-color: @building-major-line;
       }
     }
   }

@@ -1,3 +1,5 @@
+@aerialway-color: #6C7281;
+
 #aerialways {
   [aerialway = 'cable_car'],
   [aerialway = 'gondola'],
@@ -6,12 +8,12 @@
       line/line-width: 1;
       line/line-join: round;
       line/line-cap: round;
-      line/line-color: #808080;
+      line/line-color: @aerialway-color;
 
       dash/line-width: 3;
       dash/line-join: round;
       dash/line-cap: round;
-      dash/line-color: black;
+      dash/line-color: @aerialway-color;
       dash/line-dasharray: 0.4,13;
       dash/line-clip: false;
     }
@@ -22,11 +24,11 @@
       line/line-width: 1;
       line/line-join: round;
       line/line-cap: round;
-      line/line-color: #808080;
+      line/line-color: @aerialway-color;
 
       dash/line-width: 3.5;
       dash/line-join: round;
-      dash/line-color: #707070;
+      dash/line-color: lighten(@aerialway-color, 15);
       dash/line-dasharray: 6,25;
       dash/line-clip: false;
     }
@@ -43,11 +45,11 @@
       line/line-width: 1;
       line/line-join: round;
       line/line-cap: round;
-      line/line-color: #808080;
+      line/line-color: @aerialway-color;
 
       dash/line-width: 4;
       dash/line-join: round;
-      dash/line-color: black;
+      dash/line-color: @aerialway-color;
       dash/line-dasharray: 1,30;
       dash/line-clip: false;
     }
@@ -143,7 +145,7 @@
   [feature = 'man_made_pipeline'] {
     [zoom >= 17] {
       text-name: "[name]";
-      text-fill: #666666;
+      text-fill: @aerialway-color;
       text-size: 10;
       text-dy: 4;
       text-spacing: 900;

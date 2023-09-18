@@ -1,4 +1,4 @@
-@ferry-route: #66f;
+@ferry-route: white;
 @ferry-route-text: @ferry-route;
 
 #ferry-routes {
@@ -7,12 +7,22 @@
     background/line-color: @water-color;
     background/line-width: 1; /* Needs to be a bit wider than the route itself because of antialiasing */
     line-color: @ferry-route;
-    line-width: 0.4;
-    line-dasharray: 4,4;
+    line-width: 1;
+    line-dasharray: 4,2;
+    [zoom >= 10] {
+      background/line-width: 1;
+      line-width: 1.5;
+      line-dasharray: 6,2;
+    }
     [zoom >= 11] {
       background/line-width: 1;
-      line-width: 0.8;
-      line-dasharray: 6,6;
+      line-width: 1;
+      line-dasharray: 6,2;
+    }
+    [zoom >= 14] {
+      background/line-width: 1;
+      line-width: 1;
+      line-dasharray: 6,2;
     }
   }
 }
@@ -24,7 +34,7 @@
     text-placement: line;
     text-fill: @ferry-route-text;
     text-spacing: 1000;
-    text-size: 10;
+    text-size: 12;
     text-dy: -8;
   }
 }

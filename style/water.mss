@@ -1,4 +1,5 @@
-@water-text: #4d80b3;
+@water-text: white;
+@water-halo-fill: @water-color;
 @glacier: #ddecec;
 @glacier-line: #9cf;
 
@@ -217,7 +218,7 @@
       text-face-name: @oblique-fonts;
       text-fill: @water-text;
       text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
+      text-halo-fill: @water-halo-fill;
       text-spacing: 400;
       text-placement: line;
       text-repeat-distance: @waterway-text-repeat-distance;
@@ -230,7 +231,7 @@
       text-face-name: @oblique-fonts;
       text-fill: @water-text;
       text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
+      text-halo-fill: @water-halo-fill;
       text-placement: line;
       text-repeat-distance: @waterway-text-repeat-distance;
     }
@@ -241,7 +242,7 @@
       text-face-name: @oblique-fonts;
       text-fill: @water-text;
       text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
+      text-halo-fill: @water-halo-fill;
       text-spacing: 600;
       text-placement: line;
       text-vertical-alignment: middle;
@@ -257,7 +258,7 @@
         text-face-name: @oblique-fonts;
         text-fill: @water-text;
         text-halo-radius: @standard-halo-radius;
-        text-halo-fill: @standard-halo-fill;
+        text-halo-fill: @water-halo-fill;
         text-spacing: 600;
         text-placement: line;
         text-vertical-alignment: middle;
@@ -269,11 +270,11 @@
   [natural = 'bay'][zoom >= 14],
   [natural = 'strait'][zoom >= 14] {
     text-name: "[name]";
-    text-size: 10;
+    text-size: 12;
     text-face-name: @oblique-fonts;
     text-fill: @water-text;
     text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
+    text-halo-fill: @water-halo-fill;
     text-max-char-angle-delta: 15;
     text-spacing: 400;
     text-placement: line;
@@ -297,8 +298,8 @@
     [zoom >= 14][way_pixels <= 768000][feature = 'natural_strait'],
     [zoom >= 17][way_pixels <= 768000] {
       text-name: "[name]";
-      text-size: 10;
-      text-wrap-width: 25; // 2.5 em
+      text-size: 12;
+      text-wrap-width: 20; // 2.5 em
       text-line-spacing: -1.5; // -0.15 em
       [way_pixels > 12000][feature != 'natural_strait'][feature != 'natural_bay'],
       [zoom >= 15][feature = 'natural_strait'],
@@ -309,18 +310,19 @@
       }
       [way_pixels > 48000][feature != 'natural_strait'][feature != 'natural_bay'] {
         text-size: 15;
-        text-wrap-width: 59; // 3.9 em
+        text-wrap-width: 45; // 3.9 em
         text-line-spacing: -1.5; // -0.10 em
       }
       [way_pixels > 192000][feature != 'natural_strait'][feature != 'natural_bay'] {
         text-size: 19;
-        text-wrap-width: 95; // 5.0 em
+        text-wrap-width: 70; // 5.0 em
         text-line-spacing: -0.95; // -0.05 em
       }
       text-fill: @water-text;
+      text-size: 18;
       text-face-name: @oblique-fonts;
       text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
+      text-halo-fill: @water-halo-fill;
       text-placement: interior;
     }
   }

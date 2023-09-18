@@ -1,9 +1,9 @@
 /* Features related to (postal) adresses: */
 
-@address-color: #666;
+@address-color: #4C52CB;
 
 #interpolation {
-  [zoom >= 17] {
+  [zoom >= 22] {
     line-color: @address-color;
     line-width: 1;
     line-dasharray: 2,4;
@@ -11,7 +11,7 @@
 }
 
 #addresses {
-  [zoom >= 17] {
+  [zoom >= 25] {
     text-name: "[addr_housename]";
     ["addr_housenumber" != null] {
       text-name: [addr_housenumber];
@@ -28,7 +28,7 @@
     text-wrap-width: 30; // 3.0 em
     text-line-spacing: -1.5; // -0.15 em
     text-margin: 3; // 0.3 em
-    [zoom >= 18] {
+    [zoom >= 25] {
       text-halo-radius: @standard-halo-radius * 1.25;
       ["addr_unit" != null]["addr_housenumber" = null] {
         text-name: [addr_unit];
@@ -49,7 +49,7 @@
         }
       }
     }
-    [zoom >= 20] {
+    [zoom >= 25] {
         text-size: 11;
         text-wrap-width: 22; // 2.0 em
         text-line-spacing: -1.65; // -0.15 em
@@ -62,11 +62,11 @@
 no official postal addresses) */
 
 #building-text {
-  [zoom >= 14][way_pixels > 3000],
-  [zoom >= 17] {
+  [zoom >= 14][zoom < 16][way_pixels > 800]
+   {
     text-name: "[name]";
     text-face-name: @book-fonts;
-    text-fill: #444;
+    text-fill: @address-color;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     text-size: 11;
