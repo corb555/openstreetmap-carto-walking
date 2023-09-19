@@ -1,6 +1,6 @@
 # OpenStreetMap Carto - Pedestrian
 
-![screenshot](http://raw.github.com/corb555/openstreetmap-carto/master/preview.png)
+![screenshot](https://github.com/corb555/openstreetmap-carto-walking/blob/1fe3b736e584b62f742cadb9c64ec72148f3dbe2/seattle_z16.png)
 
 Experimental CartoCSS map stylesheets for pedestrian and transit exploration of an area.  
 
