@@ -2,23 +2,21 @@
 
 ![screenshot](https://github.com/corb555/openstreetmap-carto-walking/blob/1fe3b736e584b62f742cadb9c64ec72148f3dbe2/seattle_z16.png)
 
-Experimental CartoCSS map stylesheets for pedestrian and transit exploration of an area.  
+Map stylesheets that emphasize pedestrian and transit exploration of an area.  These map stylesheets can be 
+used in Kosmtik/Mapnik to display OpenStreetMaps emphasizing pedestrian rather than car activities.  These are based on 
+CartoCSS.
 
-The following are emphasized at suitable zoom levels:
+The following are emphasized:
 * Walkways and pedestrian areas
 * Public rail transit (trains, subways, light rail). 
 * Express buses - (not currently shown - needs further investigation)
 * Bike network - (work in progress - some are highlighted)
-* Natural features - hills, bays, etc.
-* Landmarks
+* Landmarks and Natural features - hills, bays, etc.
 
-The following are de-prioritized:
+The following are de-emphasized:
 * Road networks (these are rendered in smaller, lighter lines)
-* Small commercial points of interest 
 
 These stylesheets should work with [Kosmtik](https://github.com/kosmtik/kosmtik)
- and also with the command-line [CartoCSS](https://github.com/mapbox/carto) processor.
-
 
 # Installation
 
@@ -27,7 +25,6 @@ See OSM Carto
 # Roadmap
 
 ## Initial Release (v1.0.0, September 2023)
-
 
 
 # Alternatives
