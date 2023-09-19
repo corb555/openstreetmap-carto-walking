@@ -20,7 +20,7 @@ These stylesheets should work with [Kosmtik](https://github.com/kosmtik/kosmtik)
 
 # Installation
 
-[](https://github.com/corb555/openstreetmap-carto-walking/blob/3c235f1ebef4ce4ac0e1ef6099e09885d8afbace/INSTALL.md)
+[Installation](https://github.com/corb555/openstreetmap-carto-walking/blob/3c235f1ebef4ce4ac0e1ef6099e09885d8afbace/INSTALL.md)
 
 # Roadmap
 
