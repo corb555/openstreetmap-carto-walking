@@ -20,7 +20,7 @@ These stylesheets should work with [Kosmtik](https://github.com/kosmtik/kosmtik)
 
 # Installation
 
-See OSM Carto
+[](INSTALL.md)
 
 # Roadmap
 
