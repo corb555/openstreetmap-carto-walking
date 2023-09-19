@@ -12,7 +12,7 @@
 @gastronomy-icon: #0364A1;
 @gastronomy-text: @gastronomy-icon;
 @memorials: @amenity-color;
-@culture: #0E84BC;
+@culture: #026FA3;
 @public-service: @amenity-color;
 @office: #4863A0;
 @man-made-icon: #666666;
@@ -638,7 +638,7 @@
         text-size: @highlight-font-size-z16;
         text-wrap-width: @standard-wrap-width;
         text-line-spacing: @standard-line-spacing-size;
-        text-dy: 11;
+        //text-dy: 11;
         text-face-name: @standard-font;
         text-halo-radius: @standard-halo-radius;
         text-halo-fill: @standard-halo-fill;
