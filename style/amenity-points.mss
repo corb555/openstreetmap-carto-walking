@@ -46,7 +46,7 @@
 @standard-font: @book-fonts;
 @medium-font-size: 17;
 @large-font-size: 19;
-@highlight-font-size-z16: 14;
+@highlight-font-size-z16: 11;
 
 @private-opacity: 0.33;
 
@@ -466,7 +466,7 @@
           text-fill:  @culture;
           text-wrap-width: @standard-wrap-width;
           text-line-spacing: @standard-line-spacing-size;
-          text-dy: 11;
+          //text-dy: 11;
           text-face-name: @standard-font;
           text-halo-radius: @standard-halo-radius;
           text-halo-fill: @standard-halo-fill;
@@ -482,7 +482,7 @@
           text-fill:  @culture;  // HIGHLIGHT TEXT: MUSEUM
           text-wrap-width: @standard-wrap-width;
           text-line-spacing: @standard-line-spacing-size;
-          text-dy: 11;
+          // text-dy: 11;
           text-face-name: @bold-fonts;
           text-halo-radius: @standard-halo-radius;
           text-halo-fill: @standard-halo-fill;
@@ -1462,12 +1462,12 @@
     text-size: 12; //@standard-font-size;
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
-    text-dy: 11;
+    // text-dy: 11;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     [feature = 'amenity_bar'] {
-      text-dy: 13;
+      // text-dy: 13;
     }
   }
 
@@ -1481,13 +1481,15 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: @culture;
-      text-dy: 11;
-      [feature = 'amenity_community_centre'] { text-dy: 10; }
+      // text-dy: 11;
+      [feature = 'amenity_community_centre'] {
+      // text-dy: 10;
+      }
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
       [feature = 'amenity_nightclub']{
-        text-dy: 12;
+        // text-dy: 12;
       }
     }
   }
@@ -1499,13 +1501,15 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: purple; //@culture;
-      text-dy: 11;
-      [feature = 'amenity_community_centre'] { text-dy: 10; }
+      // text-dy: 11;
+      [feature = 'amenity_community_centre'] {
+      //text-dy: 10;
+      }
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
       [feature = 'amenity_nightclub']{
-        text-dy: 12;
+        // text-dy: 12;
       }
     }
   }
@@ -1543,11 +1547,11 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @public-service;
-    text-dy: 11;
-    [feature = 'amenity_courthouse'] { text-dy: 13; }
-    [feature = 'amenity_townhall'] { text-dy: 13; }
-    [feature = 'amenity_prison'] { text-dy: 12; }
-    [feature = 'amenity_bank'] { text-dy: 9; }
+    // text-dy: 11;
+    [feature = 'amenity_courthouse'] { text-dy: 1; }
+    [feature = 'amenity_townhall'] { text-dy: 3; }
+    [feature = 'amenity_prison'] { text-dy: 1; }
+    [feature = 'amenity_bank'] { text-dy: 1; }
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -1573,7 +1577,7 @@
     [feature = 'leisure_beach_resort'] {
       text-fill: @amenity-color;
     }
-    text-dy: 10;
+    // text-dy: 10;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -1607,7 +1611,7 @@
           text-fill:  @culture;  // HIGHLIGHT TEXT: MUSEUM
           text-wrap-width: @standard-wrap-width;
           text-line-spacing: @standard-line-spacing-size;
-          text-dy: 11;
+          // text-dy: 11;
           text-face-name: @bold-fonts;
           text-halo-radius: @standard-halo-radius;
           text-halo-fill: @standard-halo-fill;
@@ -1620,7 +1624,7 @@
     text-size: @standard-font-size;
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
-    text-dy: 12;
+    //text-dy: 12;
     text-fill: @shop-text;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
@@ -1671,7 +1675,7 @@
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
-    text-dy: 11;
+    // text-dy: 11;
   }
 
   [feature = 'waterway_waterfall'] {
@@ -1751,7 +1755,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @memorials;
-    text-dy: 11;
+    // text-dy: 11;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -1763,7 +1767,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @culture;  // HIGHLIGHT TEXT: PALACE
-    text-dy: 11;
+    // text-dy: 11;
     text-face-name: @bold-fonts;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -1779,7 +1783,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: darken(@man-made-icon, 20%);
-    text-dy: 10;
+    // text-dy: 10;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -1795,7 +1799,7 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: @leisure-color;
-      text-dy: 11;
+      // text-dy: 11;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
@@ -1836,7 +1840,7 @@
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-dy: 13;
+      // text-dy: 13;
       text-fill: @leisure-color;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
@@ -2087,7 +2091,7 @@
 
       [feature = 'tourism_caravan_site'] {
         text-fill: darken(@campsite, 50%);
-        text-dy: 15;
+        // text-dy: 15;
       }
       [feature = 'tourism_theme_park'],
       [feature = 'tourism_zoo'] {
@@ -2152,19 +2156,6 @@
     text-dy: 7;
   }
 
-  [feature = 'amenity_bureau_de_change'][zoom >= 19],
-  [feature = 'amenity_public_bookcase'][zoom >= 19]
-   {
-    text-name: "[name]";
-    text-size: @standard-font-size;
-    text-wrap-width: @standard-wrap-width;
-    text-line-spacing: @standard-line-spacing-size;
-    text-dy: 10;
-    text-fill: @amenity-color;
-    text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
-    text-face-name: @standard-font;
-  }
 
   [feature = 'tourism_alpine_hut'][zoom >= 14],
   [feature = 'amenity_shelter'][zoom >= 18],
@@ -2183,7 +2174,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @accommodation-text;
-    text-dy: 11;
+    // text-dy: 11;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -2200,12 +2191,12 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: @transportation-text;
-      text-dy: 11;
+      // text-dy: 11;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
       [feature = 'highway_bus_stop'] {
-        text-dy: 9;
+        // text-dy: 9;
       }
       [int_access = 'restricted'] {
         text-opacity: @private-opacity;
@@ -2244,12 +2235,12 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: blue;
-    text-dy: 4;
+    // text-dy: 4;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     [zoom >= 18] {
-      text-dy: 10;
+      // text-dy: 10;
     }
   }
 
@@ -2266,26 +2257,13 @@
     text-halo-fill: @standard-halo-fill;
   }
 
-  [feature = 'amenity_recycling'][recycling_type = 'centre'][zoom >= 18],
-  [feature = 'amenity_recycling'][zoom >= 19] {
-    text-name: "[name]";
-    text-size: @standard-font-size;
-    text-wrap-width: @standard-wrap-width;
-    text-line-spacing: @standard-line-spacing-size;
-    text-fill: @amenity-color;
-    text-dy: 10;
-    text-face-name: @standard-font;
-    text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
-  }
-
   [feature = 'amenity_hospital'][zoom >= 16] {
     text-name: "[name]";
     text-fill: @health-color;
     text-size: @standard-font-size;
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
-    text-dy: 10;
+    // text-dy: 10;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -2299,7 +2277,7 @@
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-dy: 12;
+      // text-dy: 12;
       text-fill: @health-color;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
@@ -2317,7 +2295,7 @@
       text-face-name: @landcover-face-name;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
-      text-dy: 8;
+      // text-dy: 8;
       text-fill: darken(@societal_amenities, 80%);
     }
   }
@@ -2341,7 +2319,7 @@
   }
 
   [feature = 'office'] {
-    [zoom >= 19] {
+    [zoom >= 22] {
       [office = 'accountant'],
       [office = 'adoption_agency'],
       [office = 'advertising_agency'],
@@ -2392,7 +2370,7 @@
     }
 
     // all other offices
-    [zoom >= 19] {
+    [zoom >= 22] {
       text-name: "[name]";
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
@@ -2412,7 +2390,7 @@
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-dy: 10;
+      // text-dy: 10;
       text-fill: @office;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
@@ -2427,7 +2405,7 @@
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-dy: 12;
+      // text-dy: 12;
       text-fill: @shop-text;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
@@ -2586,7 +2564,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @airtransport;
-    text-dy: -10;
+    // text-dy: -10;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -2603,7 +2581,7 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: darken(@airtransport, 15%);
-      text-dy: 10;
+      // text-dy: 10;
       text-face-name: @oblique-fonts;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
@@ -2624,7 +2602,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @amenity-color;
-    text-dy: 10;
+    // text-dy: 10;
     text-face-name: @oblique-fonts;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: white;
@@ -2634,17 +2612,6 @@
       }
   }
 
-  [feature = 'amenity_hunting_stand'][zoom >= 17] {
-    text-name: "[name]";
-    text-size: @standard-font-size;
-    text-wrap-width: @standard-wrap-width;
-    text-line-spacing: @standard-line-spacing-size;
-    text-dy: 10;
-    text-fill: darken(@man-made-icon, 20%);
-    text-face-name: @standard-font;
-    text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
-  }
 
   [feature = 'natural_tree'][zoom >= 19] {
     text-name: "[name]";
@@ -2652,10 +2619,8 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @tree-color;
-    text-dy: 7;
-    [zoom >= 18] { text-dy: 8; }
-    [zoom >= 19] { text-dy: 11; }
-    [zoom >= 20] { text-dy: 18; }
+    // text-dy: 7;
+
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -2667,7 +2632,7 @@
     text-size: @standard-font-size;
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
-    text-dy: 10;
+    // text-dy: 10;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
@@ -2678,7 +2643,7 @@
           text-fill:  @culture;  // HIGHLIGHT TEXT: ATTRACTION
           text-wrap-width: @standard-wrap-width;
           text-line-spacing: @standard-line-spacing-size;
-          text-dy: 11;
+          // text-dy: 11;
           text-face-name: @bold-fonts;
           text-halo-radius: @standard-halo-radius;
           text-halo-fill: @standard-halo-fill;
@@ -2695,7 +2660,7 @@
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-fill: @transportation-text;
-      text-dy: 9;
+      // text-dy: 9;
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
@@ -2706,26 +2671,6 @@
       [feature = 'amenity_bicycle_parking'],
       [feature = 'amenity_motorcycle_parking'] { text-dy: 12; }
     }
-  }
-}
-
-
-
-// GROUP
-#text-low-priority {
-  [feature = 'man_made_cross'][zoom >= 18],
-  [feature = 'historic_wayside_cross'][zoom >= 18],
-  [feature = 'historic_wayside_shrine'][zoom >= 18] {
-    text-name: "[name]";
-    text-size: @standard-font-size;
-    text-wrap-width: @standard-wrap-width;
-    text-line-spacing: @standard-line-spacing-size;
-    text-fill: darken(@man-made-icon, 20%);
-    text-dy: 6;
-      [feature = 'historic_wayside_shrine'] { text-dy: 10; }
-    text-face-name: @standard-font;
-    text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
   }
 }
 
@@ -2795,7 +2740,7 @@
       text-placement: line;
       text-vertical-alignment: middle;
       text-repeat-distance: @waterway-text-repeat-distance;
-      text-dy: 8;
+      // text-dy: 8;
     }
   }
 
@@ -2805,7 +2750,7 @@
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-fill: @transportation-text;
-    text-dy: 13;
+    // text-dy: 13;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;

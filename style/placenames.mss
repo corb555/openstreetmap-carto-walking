@@ -255,7 +255,7 @@
     [zoom >= 8] {
       text-name: "[name]";
       text-size: 10;
-      text-fill: brown; //@placenames;
+      text-fill: @placenames;
       text-face-name: @book-fonts;
       text-halo-fill: @standard-halo-fill;
       text-halo-radius: @standard-halo-radius * 1.5;
@@ -295,7 +295,7 @@
     [zoom >= 13][zoom < 16] {
       text-name: "[name]";
       text-size: 10;
-      text-fill: green; //@placenames;
+      text-fill: @placenames;
       text-face-name: @book-fonts;
       text-halo-fill: @standard-halo-fill;
       text-halo-radius: @standard-halo-radius * 1.5;
@@ -318,33 +318,28 @@
   }
 }
 
+@name-size-z12: 12;
+@name-size-z14: 15;
+@name-size-z16: 22;
 #placenames-small::suburb {
   [place = 'suburb'][zoom >= 13][zoom < 17] {
     text-name: "[name]";
-    text-size: 12;
+    text-size: @name-size-z12;
     text-fill: @placenames;
     text-face-name: @book-fonts;
-    text-halo-fill: @standard-halo-fill;
+    text-halo-fill: white; //@standard-halo-fill;
     text-halo-radius: @standard-halo-radius * 1.5;
     text-wrap-width: 55; // 5.0 em
     text-line-spacing: -0.55; // -0.05 em
     text-margin: 7.7; // 0.7 em
     [zoom >= 14] {
-      text-fill: lighten(desaturate(@placenames, 20), 20);
-      text-size: 12;
+      text-size: @name-size-z14;
       text-wrap-width: 60; // 5.0 em
       text-line-spacing: -0.60; // -0.05 em
       text-margin: 8.4; // 0.7 em
     }
-    [zoom >= 15] {
-      text-size: 14;
-      text-wrap-width: 70; // 5.0 em
-      text-line-spacing: -0.70; // -0.05 em
-      text-margin: 9.8; // 0.7 em
-      text-halo-fill: white;
-    }
     [zoom >= 16] {
-      text-size: 18;
+      text-size: @name-size-z16;
       text-wrap-width: 75; // 5.0 em
       text-line-spacing: -0.75; // -0.05 em
       text-margin: 10.5; // 0.7 em
@@ -357,7 +352,7 @@
     [zoom >= 12][zoom < 17] {
       text-name: "[name]";
       text-size: 10;
-      text-fill: black; //@placenames;
+      text-fill: @placenames;
       text-face-name: @book-fonts;
       text-halo-fill: @standard-halo-fill;
       text-halo-radius: @standard-halo-radius * 1.5;
@@ -396,30 +391,18 @@
 
 #placenames-small::quarter {
   [place = 'quarter'] {
-    [zoom >= 14][zoom < 17] {
+    [zoom >= 16][zoom < 18] {
       text-name: "[name]";
-      text-fill: orange; //@placenames;
+      text-fill: @placenames;
       text-face-name: @book-fonts;
       text-halo-fill: @standard-halo-fill;
       text-halo-radius: @standard-halo-radius * 1.5;
-      [zoom >= 14] {
+      [zoom >= 16] {
         text-halo-fill: white;
-        text-size: 15;
+        text-size: @name-size-z16 - 4;
         text-wrap-width: 55; // 5.0 em
         text-line-spacing: -0.55; // -0.05 em
         text-margin: 7.7; // 0.7 em
-      }
-      [zoom >= 15] {
-        text-size: 15;
-        text-wrap-width: 60; // 5.0 em
-        text-line-spacing: -0.60; // -0.05 em
-        text-margin: 8.4; // 0.7 em
-      }
-      [zoom >= 16] {
-        text-size: 20;
-        text-wrap-width: 70; // 5.0 em
-        text-line-spacing: -0.70; // -0.05 em
-        text-margin: 9.8; // 0.7 em
       }
     }
   }
@@ -460,7 +443,7 @@
   [place = 'farm'][zoom >= 15] {
     text-name: "[name]";
     text-size: 10;
-    text-fill: orange;// @placenames;
+    text-fill: @placenames;
     text-face-name: @book-fonts;
     text-halo-fill: @standard-halo-fill;
     text-halo-radius: @standard-halo-radius * 1.5;
