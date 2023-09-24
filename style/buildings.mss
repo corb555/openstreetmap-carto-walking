@@ -1,4 +1,5 @@
-@building-fill: #CEC5AC;  // Lch(84, 5, 68)
+// Building Fill
+
 @building-line: darken(@building-fill, 15%);  // Lch(70, 9, 66)
 @building-low-zoom: darken(@building-fill, 4%);
 
@@ -7,7 +8,7 @@
 @building-major-z15: darken(@building-major-fill, 16%);  // Lch(70, 9, 66)
 @building-major-z14: darken(@building-major-fill, 16%);  // Lch(66, 11, 65)
 
-@building-religious: #E1BE5E;
+@building-religious: @landmark;
 
 @entrance-permissive: darken(@building-line, 15%);
 @entrance-normal: @building-line;
@@ -16,7 +17,7 @@
 @building-transit: desaturate(lighten(@transit_line, 10),30);
 
 #buildings {
-  [zoom >= 14] [building != 'stadium']  {
+  [zoom >= 15] [building != 'stadium']  {
     polygon-fill: @building-low-zoom;
     polygon-clip: false;
     [zoom >= 15] {
@@ -24,31 +25,43 @@
       line-color: @building-line;
       line-width: 0;
       line-clip: false;
+      opacity: 0.7;
     }
+
+    [building = 'museum'] {
+      polygon-fill: @landmark;
+    }
+
     [aeroway = 'terminal'],
     [aerialway = 'station'],
     [building = 'train_station'],
-    [building = 'transportation'],
     [public_transport = 'station'] {
       polygon-fill: @building-transit;
       [zoom >= 15] {
-        polygon-fill: @building-transit;
+        polygon-gamma: 0.2;
+        line-color: @building-major-line;
+      }
+    }
+
+    [building = 'transportation']{
+      polygon-fill: @building-fill;
+      [zoom >= 15] {
         polygon-gamma: 0.2;
         line-color: @building-major-line;
       }
     }
 
     [building = 'temple'],
-    [building='church'],
-    [building='shrine'],
+    [building = 'church'],
+    [building = 'shrine'],
     [building = 'cathedral'],
-    [building='mosque'],
-    [building='gurdwara'],
-    [building='synagogue'] {
+    [building = 'mosque'],
+    [building = 'gurdwara'],
+    [building = 'synagogue'] {
       polygon-fill: @building-religious;
       [zoom >= 15] {
         polygon-fill: @building-religious;
-        line-color: @building-major-line;
+        // line-color: @building-major-line;
       }
     }
   }

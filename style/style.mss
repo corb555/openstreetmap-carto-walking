@@ -1,5 +1,6 @@
 Map {
-  background-color: @land-color;
+    //background-color: @land-color;
+    background-image:url(img/natural_paper.png);
 }
 
 @water-color: #668ABA;

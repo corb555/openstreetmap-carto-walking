@@ -23,7 +23,7 @@ _parts:
 scale: 1
 metatile: 2
 name: OpenStreetMap Carto
-description: A general-purpose OpenStreetMap mapnik style, in CartoCSS
+description: A pedestrian oriented OpenStreetMap mapnik style, in CartoCSS
 bounds: *world
 center:
   - 0
@@ -54,75 +54,9 @@ Stylesheet:
   - style/admin.mss
   - style/addressing.mss
   - style/golf.mss
-  - style/tourism.mss
-  - style/contours.mss
+  - style/roller_coaster.mss
 
 Layer:
-  - id: contours10
-    geometry: multilinestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way
-         FROM contour
-         WHERE height::int % 50 != 0 AND height::int % 200 != 0
-        ) AS contours10
-    properties:
-      minzoom: 16
-  - id: contours50
-    geometry: multilinestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way
-         FROM contour
-         WHERE height::int % 50 = 0 AND height::int % 200 != 0
-        ) AS contours50
-    properties:
-      minzoom: 14
-  - id: contours200
-    geometry: multilinestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way
-         FROM contour
-         WHERE height::int % 200 = 0
-        ) AS contours200
-    properties:
-      minzoom: 12
-  - id: contours-text50
-    geometry: linestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way, height
-         FROM contour
-         WHERE height::int % 50 = 0 AND height::int % 200 != 0
-         ) AS contours_text50
-    properties:
-      minzoom: 16
-  - id: contours-text200
-    geometry: linestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way, height
-         FROM contour
-         WHERE height::int % 200 = 0
-        ) AS contours_text200
-    properties:
-      minzoom: 12
   - id: landcover-low-zoom
     geometry: polygon
     <<: *extents
@@ -165,7 +99,7 @@ Layer:
               way, COALESCE(name, '') AS name,
               ('aeroway_' || (CASE WHEN aeroway IN ('apron', 'aerodrome') THEN aeroway END)) AS aeroway,
               ('golf_' || (CASE WHEN (tags->'golf') IN ('rough', 'fairway', 'driving_range', 'water_hazard', 'green', 'bunker', 'tee') THEN tags->'golf' ELSE NULL END)) AS golf,
-              ('amenity_' || (CASE WHEN amenity IN ('bicycle_parking', 'motorcycle_parking', 'university', 'college', 'school', 'taxi',
+              ('amenity_' || (CASE WHEN amenity IN ('bicycle_parking', 'motorcycle_parking', 'university', 'college', 'school', 'taxi', 'theatre',
                                                     'hospital', 'kindergarten', 'grave_yard', 'prison', 'place_of_worship', 'clinic', 'ferry_terminal',
                                                     'marketplace', 'community_centre', 'social_facility', 'arts_centre', 'parking_space', 'bus_station',
                                                     'fire_station', 'police')
@@ -182,7 +116,7 @@ Layer:
               ('natural_' || (CASE WHEN "natural" IN ('beach', 'shoal', 'heath', 'grassland', 'wood', 'sand', 'scree', 'shingle', 'bare_rock', 'scrub') THEN "natural" END)) AS "natural",
               ('wetland_' || (CASE WHEN "natural" IN ('wetland', 'mud') THEN (CASE WHEN "natural" = 'mud' THEN "natural" ELSE tags->'wetland' END) END)) AS wetland,
               ('power_' || (CASE WHEN power IN ('plant', 'substation', 'generator') THEN power END)) AS power,
-              ('tourism_' || (CASE WHEN tourism IN ('camp_site', 'caravan_site', 'picnic_site') THEN tourism END)) AS tourism,
+              ('tourism_' || (CASE WHEN tourism IN ('camp_site', 'caravan_site', 'picnic_site','attraction') THEN tourism END)) AS tourism,
               ('highway_' || (CASE WHEN highway IN ('services', 'rest_area') THEN highway END)) AS highway,
               ('railway_' || (CASE WHEN railway = 'station' THEN railway END)) AS railway,
               CASE WHEN religion IN ('christian', 'jewish', 'muslim') THEN religion ELSE 'INT-generic'::text END AS religion,
@@ -201,7 +135,7 @@ Layer:
               OR "natural" IN ('beach', 'shoal', 'heath', 'mud', 'wetland', 'grassland', 'wood', 'sand', 'scree', 'shingle', 'bare_rock', 'scrub')
               OR power IN ('plant', 'substation', 'generator')
               OR shop IN ('mall')
-              OR tourism IN ('camp_site', 'caravan_site', 'picnic_site')
+              OR tourism IN ('camp_site', 'caravan_site', 'picnic_site', 'attraction')
               OR highway IN ('services', 'rest_area')
               OR railway = 'station')
               AND way_area > 1*!pixel_width!::real*!pixel_height!::real
@@ -224,18 +158,6 @@ Layer:
         ) AS landcover_line
     properties:
       minzoom: 14
-  - id: icesheet-poly
-    geometry: polygon
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way
-          FROM icesheet_polygons
-        ) AS icesheet_polygons
-    properties:
-      minzoom: 5
   - id: water-lines-low-zoom
     geometry: linestring
     <<: *extents

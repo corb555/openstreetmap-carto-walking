@@ -2,21 +2,22 @@
 
 ![screenshot](https://github.com/corb555/openstreetmap-carto-walking/blob/1fe3b736e584b62f742cadb9c64ec72148f3dbe2/seattle_z16.png)
 
-Map stylesheets that emphasize pedestrian and transit exploration of an area.  These map stylesheets can be 
-used in Kosmtik/Mapnik to display OpenStreetMaps emphasizing pedestrian rather than car activities.  These are based on 
-CartoCSS.
+These are CartoCSS map stylesheets that emphasize pedestrian and transit exploration of an area rather than cars.  These map stylesheets can be 
+used in [Kosmtik](https://github.com/kosmtik/kosmtik) / Mapnik. The style is based on [openstreetmap-carto][osm-carto].
+These stylesheets can be used in your own cartography projects, and are designed to be  customised. They work with [Kosmtik][] and also with the command-line [CartoCSS][] processor.
+If you want to use the map or tiles in your project, please see the [USAGE.md](USAGE.md) document.
 
-The following are emphasized:
-* Walkways and pedestrian areas
+**Style Overview:**  
+
+_The following are emphasized:_  
+* Parks, walkways, and pedestrian areas
 * Public rail transit (trains, subways, light rail). 
 * Express buses - (not currently shown - needs further investigation)
 * Bike network - (work in progress - some are highlighted)
-* Landmarks and Natural features - hills, bays, etc.
+* Landmarks and Natural features 
 
-The following are de-emphasized:
-* Road networks (these are rendered in smaller, lighter lines)
-
-These stylesheets should work with [Kosmtik](https://github.com/kosmtik/kosmtik)
+_The following are de-emphasized:_
+* Road networks
 
 # Installation
 
@@ -39,7 +40,7 @@ maps using Mapnik. Some alternatives are:
 * [OpenStreetMap Carto German](https://github.com/giggls/openstreetmap-carto-de)
 
 # Maintainers
-* None - this is experimental.  Do not use for any production purpose
+* None - this is experimental.  
 
 # Thanks to the following for Standard OSM stylesheets
 

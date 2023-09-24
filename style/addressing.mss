@@ -59,14 +59,14 @@
 }
 
 /* Building names (rendered differently from addresses because they are
-no official postal addresses) */
+not official postal addresses) */
 
 #building-text {
-  [zoom >= 14][zoom < 16][way_pixels > 800]
+  [zoom >= 14][zoom <= 16][way_pixels > 800000]
    {
     text-name: "[name]";
     text-face-name: @book-fonts;
-    text-fill: @address-color;
+    text-fill: orange; //@address-color;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     text-size: 11;

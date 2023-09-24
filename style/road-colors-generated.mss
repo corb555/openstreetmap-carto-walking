@@ -1,5 +1,5 @@
-@motorway-fill: #D1BE8B; //#EBD9A3;
-@motorway-low-zoom: darken(@motorway-fill,20);
+@motorway-fill: #D8C79C; //#EBD9A3;
+@motorway-low-zoom: @motorway-fill;
 
 /* This is generated code, do not change this file manually.          */
 /*                                                                    */
