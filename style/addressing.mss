@@ -66,7 +66,7 @@ not official postal addresses) */
    {
     text-name: "[name]";
     text-face-name: @book-fonts;
-    text-fill: orange; //@address-color;
+    text-fill: @address-color;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     text-size: 11;

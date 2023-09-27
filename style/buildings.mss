@@ -8,28 +8,53 @@
 @building-major-z15: darken(@building-major-fill, 16%);  // Lch(70, 9, 66)
 @building-major-z14: darken(@building-major-fill, 16%);  // Lch(66, 11, 65)
 
-@building-religious: @landmark;
-
 @entrance-permissive: darken(@building-line, 15%);
 @entrance-normal: @building-line;
 
-@transit_line: #9D31B5;
-@building-transit: desaturate(lighten(@transit_line, 10),30);
 
+
+// All buildings are filled above zoom level (with opacity)
+// Some buildings are also filled in landcover.mss
+// Museum, Transit, and Religious get special fill
 #buildings {
-  [zoom >= 15] [building != 'stadium']  {
+  [zoom >= 15]    {
     polygon-fill: @building-low-zoom;
     polygon-clip: false;
+    opacity: 0.6;
     [zoom >= 15] {
       polygon-fill: @building-fill;
       line-color: @building-line;
       line-width: 0;
       line-clip: false;
-      opacity: 0.7;
     }
 
     [building = 'museum'] {
-      polygon-fill: @landmark;
+      polygon-fill: @landmark-building-layer;
+      line-width: .6;
+      line-opacity: .6;
+      line-color: @landmark-outline;
+      line-pattern-file:url(img/line_solid_6.png);
+      ::shadow {
+        polygon-fill: #000;
+        polygon-geometry-transform:translate(0,2);
+        image-filters:agg-stack-blur(3,3);
+        opacity:0.3;
+      }
+    }
+
+    [building = 'temple'],
+    [building = 'church'],
+    [building = 'shrine'],
+    [building = 'cathedral'],
+    [building = 'mosque'],
+    [building = 'gurdwara'],
+    [building = 'synagogue'] {
+      polygon-fill: @landmark-building-layer;
+      [zoom >= 15] {
+        line-width: .6;
+        line-color: @landmark-outline;
+        line-opacity: .6;
+      }
     }
 
     [aeroway = 'terminal'],
@@ -48,20 +73,6 @@
       [zoom >= 15] {
         polygon-gamma: 0.2;
         line-color: @building-major-line;
-      }
-    }
-
-    [building = 'temple'],
-    [building = 'church'],
-    [building = 'shrine'],
-    [building = 'cathedral'],
-    [building = 'mosque'],
-    [building = 'gurdwara'],
-    [building = 'synagogue'] {
-      polygon-fill: @building-religious;
-      [zoom >= 15] {
-        polygon-fill: @building-religious;
-        // line-color: @building-major-line;
       }
     }
   }

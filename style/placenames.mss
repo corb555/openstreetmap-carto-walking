@@ -1,5 +1,4 @@
-@placenames: #0D15A0;
-@placenames-light: @placenames;
+
 @country-labels: darken(@admin-boundaries-narrow, 10%);
 @state-labels: @admin-boundaries-narrow;
 @county-labels: darken(@admin-boundaries-wide, 5%);
@@ -129,8 +128,8 @@
   [zoom >= 8] [zoom < 15] {
     text-name: '[name]';
     text-face-name: @book-fonts;
-    text-fill: black;
-    text-size: 15;
+    text-fill: @placenames;
+    text-size: 26;
     text-wrap-width: 65; // 5.0 em
     text-line-spacing: -0.65; // -0.05 em
     text-margin: 9.1; // 0.7 em
@@ -138,19 +137,19 @@
     text-halo-radius: @standard-halo-radius * 1.5;
 
     [zoom >= 10]  {
-      text-size: 15;
+      text-size: 25;
       text-wrap-width: 70; // 5.0 em
       text-line-spacing: -0.70; // -0.05 em
       text-margin: 9.8; // 0.7 em
     }
     [zoom >= 11]  {
-      text-size: 20;
+      text-size: 30;
       text-wrap-width: 75; // 5.0 em
       text-line-spacing: -0.75; // -0.05 em
       text-margin: 10.5; // 0.7 em
     }
     [zoom >= 14]  {
-      text-size: 22;
+      text-size: 40;
       text-wrap-width: 75; // 5.0 em
       text-line-spacing: -0.75; // -0.05 em
       text-margin: 10.5; // 0.7 em
@@ -319,12 +318,13 @@
 }
 
 @name-size-z12: 12;
-@name-size-z14: 15;
+@name-size-z14: 19;
 @name-size-z16: 22;
+
 #placenames-small::suburb {
   [place = 'suburb'][zoom >= 13][zoom < 17] {
     text-name: "[name]";
-    text-size: @name-size-z12;
+    text-size: @name-size-z12+4;
     text-fill: @placenames;
     text-face-name: @book-fonts;
     text-halo-fill: white; //@standard-halo-fill;
@@ -333,13 +333,13 @@
     text-line-spacing: -0.55; // -0.05 em
     text-margin: 7.7; // 0.7 em
     [zoom >= 14] {
-      text-size: @name-size-z14;
+      text-size: @name-size-z14+4;
       text-wrap-width: 60; // 5.0 em
       text-line-spacing: -0.60; // -0.05 em
       text-margin: 8.4; // 0.7 em
     }
     [zoom >= 16] {
-      text-size: @name-size-z16;
+      text-size: @name-size-z16+4;
       text-wrap-width: 75; // 5.0 em
       text-line-spacing: -0.75; // -0.05 em
       text-margin: 10.5; // 0.7 em
@@ -438,7 +438,7 @@
 }
 
 #placenames-small::neighborhood {
-  [place = 'neighbourhood'][zoom >= 17][zoom < 20],
+  [place = 'neighbourhood'][zoom >= 19][zoom < 20],
   [place = 'isolated_dwelling'][zoom >= 15],
   [place = 'farm'][zoom >= 15] {
     text-name: "[name]";

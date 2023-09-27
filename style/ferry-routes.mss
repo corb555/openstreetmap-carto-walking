@@ -21,7 +21,7 @@
     }
     [zoom >= 14] {
       background/line-width: 1;
-      line-width: 1;
+      line-width: 1.6;
       line-dasharray: 6,2;
     }
   }

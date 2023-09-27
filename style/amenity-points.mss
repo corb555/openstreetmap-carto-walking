@@ -14,7 +14,7 @@
 @gastronomy-icon: #0364A1;
 @gastronomy-text: @gastronomy-icon;
 @memorials: @culture;
-@culture: #2B4CA8;
+@culture: #5C6272;
 @public-service: @amenity-color;
 @office: #4863A0;
 @man-made-icon: #666666;
@@ -26,7 +26,10 @@
 @aboriginal: #82643a;
 @religious-icon: @culture;
 @tourism: @culture;
-@tree-color:green;
+@tree-color: #68AD70;
+
+@placenames: #5D6A8B;
+@placenames-light: @placenames;
 
 @landcover-font-size: 12;
 @landcover-wrap-width-size: 30; // 3 em
@@ -46,7 +49,8 @@
 @standard-font: @book-fonts;
 @medium-font-size: 17;
 @large-font-size: 19;
-@highlight-font-size-z16: 11;
+
+@highlight-font-size-z16: 14;
 
 @private-opacity: 0.33;
 
@@ -300,11 +304,6 @@
     marker-clip: false;
   }
 
-  [feature = 'tourism_gallery'][zoom >= 18] {
-    marker-file: url('symbols/shop/art.svg');
-    marker-clip: false;
-    marker-fill: @amenity-color;
-  }
 
   [feature = 'tourism_hostel'][zoom >= 18] {
     marker-file: url('symbols/tourism/hostel.svg');
@@ -476,8 +475,9 @@
 
    // Museum name
    [feature = 'tourism_museum'][zoom >= 14],
-   [feature = 'tourism_gallery'][zoom >= 18]{
-       [feature = 'tourism_museum'] [zoom >= 14] [way_pixels > 2] {
+   [feature = 'tourism_gallery'][zoom >= 14]{
+       [feature = 'tourism_museum'] [zoom >= 15] ,
+        [feature = 'tourism_gallery'][zoom >= 16]{
           text-name: "[name]";
           text-fill:  @culture;  // HIGHLIGHT TEXT: MUSEUM
           text-wrap-width: @standard-wrap-width;
@@ -488,7 +488,8 @@
           text-halo-fill: @standard-halo-fill;
           text-size: @highlight-font-size-z16;
        }
-       [feature = 'tourism_museum'] [zoom >= 17] {
+       [feature = 'tourism_museum'] [zoom >= 17],
+       [feature = 'tourism_gallery'][way_pixels > 10][zoom >= 17]{
           marker-file: url('symbols/tourism/museum.svg');
           marker-fill: @culture;
           marker-clip: false;
@@ -615,7 +616,8 @@
            marker-file: url('symbols/amenity/theatre.svg');
            marker-fill: @culture;
            marker-clip: false;
-           text-size: @standard-font-size;
+           text-fill: lighten(@culture, 10);
+           text-size: @standard-font-size - 3;
         }
         [zoom >= 18] {
             text-size: @medium-font-size;
@@ -1418,7 +1420,7 @@
   [feature = 'place_locality'][zoom >= 16] {
     text-name: "[name]";
     text-size: 10;
-    text-fill: orange; //@placenames;
+    text-fill: @placenames;
     text-face-name: @book-fonts;
     text-halo-fill: @standard-halo-fill;
     text-halo-radius: @standard-halo-radius * 1.5;
@@ -1608,7 +1610,7 @@
   // religious building name
   [feature = 'amenity_place_of_worship'][zoom >= 15][way_pixels > 500]{
     text-name: "[name]";
-          text-fill:  @culture;  // HIGHLIGHT TEXT: MUSEUM
+          text-fill:  @culture;  // HIGHLIGHT TEXT: RELIGIOUS
           text-wrap-width: @standard-wrap-width;
           text-line-spacing: @standard-line-spacing-size;
           // text-dy: 11;
@@ -2016,18 +2018,22 @@
       text-fill: @culture;
       text-face-name: @bold-fonts;
       text-name: "[name]";  // HIGHLIGHT TEXT: LAND medium size
-      text-size: @highlight-font-size-z16;
+      text-size: @highlight-font-size-z16 - 2;
       text-wrap-width: @landcover-wrap-width-size;
       text-line-spacing: @landcover-line-spacing-size;
 
       [way_pixels > 7000] {   // HIGHLIGHT TEXT: Land large size
+            //text-fill: blue;
+
         text-size: @highlight-font-size-z16 ;
         text-wrap-width: @landcover-wrap-width-size-big;
         text-line-spacing: @landcover-line-spacing-size-big;
       }
 
       [way_pixels > 30000] {   // HIGHLIGHT TEXT: VERY LARGE SIZE
-        text-size: @highlight-font-size-z16 ;
+            //text-fill: purple;
+
+        text-size: @highlight-font-size-z16 + 6 ;
         text-wrap-width: @landcover-wrap-width-size-bigger;
         text-line-spacing: @landcover-line-spacing-size-bigger;
       }
@@ -2047,7 +2053,7 @@
       [feature = 'landuse_recreation_ground'],
       [feature = 'landuse_village_green'],
       [feature = 'leisure_garden'] {
-         text-fill: @culture;
+         //text-fill: @placenames;
       }
 
       [feature = 'landuse_vineyard'],
@@ -2613,7 +2619,7 @@
   }
 
 
-  [feature = 'natural_tree'][zoom >= 19] {
+  [feature = 'natural_tree'][zoom >= 18] {
     text-name: "[name]";
     text-size: @standard-font-size;
     text-wrap-width: @standard-wrap-width;
@@ -2779,29 +2785,31 @@
         line-width: 30;
       }
     }
-    [natural = 'tree'] {
+
+    [natural = 'tree'] [zoom >= 22]  {
+        opacity: 0.6;
       marker-fill: darken(@forest,20%);
       marker-allow-overlap: true;
       marker-line-width: 0;
       marker-ignore-placement: true;
       marker-width: 2.5;
       marker-height: 2.5;
-      [zoom >= 18] {
-        marker-width: 10;
-        marker-height: 10;
+      [zoom >= 22] {
+        marker-width: 26;
+        marker-height: 22;
       }
-      [zoom >= 19] {
-        marker-width: 15;
-        marker-height: 15;
-      }
-      [zoom >= 20] {
+      [zoom >= 22] {
         marker-width: 30;
-        marker-height: 30;
+        marker-height: 28;
+      }
+      [zoom >= 22] {
+        marker-width: 38;
+        marker-height: 36;
       }
     }
   }
   [natural = 'tree']::trunk {
-    [zoom >= 18] {
+    [zoom >= 22] {
       trunk/opacity: 0.4;
       trunk/marker-fill: #6b8d5e; // Same opacity and color as forest svg patterns
       trunk/marker-allow-overlap: true;
@@ -2810,11 +2818,11 @@
       trunk/marker-height: 2;
       trunk/marker-ignore-placement: true;
     }
-    [zoom >= 19] {
+    [zoom >= 22] {
       trunk/marker-width: 3;
       trunk/marker-height: 3;
     }
-    [zoom >= 20] {
+    [zoom >= 22] {
       trunk/marker-width: 6;
       trunk/marker-height: 6;
     }

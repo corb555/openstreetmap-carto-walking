@@ -1,7 +1,7 @@
-@transit_station:  #A35DCE;
-@station-text: darken(@transit_station, 20);
+@transit_station:  #86649A;
+@station-text: @transit_station;
 
-// Station markers and names
+// GROUP -Station markers and names
 
 #stations {
   [railway = 'subway_entrance'][zoom >= 17] {
@@ -32,7 +32,7 @@
 
   [railway = 'station'][zoom >= 10] {
     marker-file: url('symbols/square.svg');
-    marker-fill: @transit_station;
+    marker-fill: @transit;
     marker-clip: false;
 
     [station != 'subway'] {
@@ -43,18 +43,18 @@
       marker-width: 7;
     }
 
-    [zoom >= 13] {
+    [zoom >= 15] {
       text-name: "[name]";
       text-face-name: @oblique-fonts;
       marker-width: 7;
-      text-fill: darken(@transit,20);
-      text-size: 10;
+      text-fill: @transit;
+      text-size: 12;
       text-wrap-width: 33; // 3 em
       text-line-spacing: -1.65; // -0.15 em
-      text-dy: 10;
+      text-dy: 13;
     }
 
-    [zoom >= 15] {
+    [zoom >= 17] {
       marker-width: 9;
       text-size: 13;
       text-wrap-width: 33; // 3 em

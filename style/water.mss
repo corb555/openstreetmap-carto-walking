@@ -23,6 +23,8 @@
   [natural = 'water'],
   [landuse = 'reservoir'],
   [waterway = 'riverbank'] {
+          opacity:0.8;
+
     [int_intermittent = 'no'] {
       polygon-fill: @water-color;
       [way_pixels >= 4] { polygon-gamma: 0.75; }
@@ -76,6 +78,7 @@
 
 #water-lines,
 #waterway-bridges {
+    opacity: 0.6;
   [waterway = 'canal'][zoom >= 12],
   [waterway = 'river'][zoom >= 12] {
     // the additional line of land color is used to provide a background for dashed casings
@@ -287,6 +290,7 @@
 
 #text-poly-low-zoom[zoom < 10],
 #text-point[zoom >= 10] {
+    opacity: 0.6;
   [feature = 'natural_water'],
   [feature = 'landuse_reservoir'],
   [feature = 'landuse_basin'],
