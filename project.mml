@@ -22,7 +22,7 @@ _parts:
 
 scale: 1
 metatile: 2
-name: OpenStreetMap Carto
+name: OpenStreetMap Pedestrian
 description: A pedestrian oriented OpenStreetMap mapnik style, in CartoCSS
 bounds: *world
 center:

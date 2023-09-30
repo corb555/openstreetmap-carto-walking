@@ -3,8 +3,8 @@
 
 @meadow: #97D16E;
 @park: #78AB66    ;          //  Lch(94,30,145)
-@grass: #6EAF57; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
-@forest: darken(saturate(@park, 15), 11);       // Lch(80,30,135)
+@grass: #76C25B; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
+@forest: darken(saturate(@park, 11), 6);       // Lch(80,30,135)
 @forest-text: desaturate(@forest, 15);  // Lch(40,30,135)
 @light-forest: lighten(@forest, 20);
 @hedge: @forest;       // Lch(80,30,135)
@@ -17,11 +17,11 @@
 
 
 // --- "Base" landuses ---
-@building-fill: #CFC384;
+@building-fill: #E0D596;
 @building-fill-light: lighten(@building-fill, 15);
 
 // theatre, museum
-@landmark: #C0856B;  // Goes over building fill
+@landmark: #E0C570;  // Goes over building fill
 
 // Religious,
 @landmark-building-layer:  @landmark; //   // Instead of building fill
@@ -215,9 +215,9 @@
     }
   }
 
-  [feature = 'amenity_place_of_worship'][zoom >= 13],
-  [feature = 'landuse_religious'][zoom >= 13] {
-    polygon-fill:  @place_of_worship;
+  [feature = 'amenity_place_of_worship'][zoom >= 22],
+  [feature = 'landuse_religious'][zoom >= 22] {
+    polygon-fill:  red; //@place_of_worship;
     polygon-clip: false;
     [zoom >= 15] {
       line-color: @place_of_worship_outline;
@@ -254,7 +254,7 @@
   }
 
   [feature = 'leisure_park'] {
-      opacity: 0.8;
+      opacity: 0.9;
 
     [zoom >= 10] {
       polygon-fill: @park;
@@ -489,10 +489,24 @@
     [way_pixels >= 64] { polygon-gamma: 0.3;  }
   }
 
+  [feature = 'tourism_museum'] {
+      opacity: 0.6;
+
+    [zoom >= 10] {
+      polygon-fill: @landmark;
+      //[way_pixels >= 4]  { polygon-gamma: 0.75; }
+      //[way_pixels >= 64] { polygon-gamma: 0.3;  }
+      line-width: .6;
+      line-opacity: .6;
+
+      line-color: @landmark-outline;
+      line-pattern-file:url(img/line_solid_6.png);
+    }
+  }
+
   [feature = 'tourism_attraction'],
   [feature = 'amenity_arts_centre'],
   [feature = 'tourism_gallery'],
-  [feature = 'tourism_museum'],
   [feature = 'amenity_theatre'] {
       opacity: 0.6;
 
@@ -505,12 +519,6 @@
 
       line-color: @landmark-outline;
       line-pattern-file:url(img/line_solid_6.png);
-      ::shadow {
-        polygon-fill: #000;
-        polygon-geometry-transform:translate(0,2);
-        image-filters:agg-stack-blur(3,3);
-        opacity:0.3;
-      }
     }
   }
 

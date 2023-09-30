@@ -36,7 +36,7 @@
     marker-clip: false;
 
     [station != 'subway'] {
-      marker-width: 4;
+      marker-width: 9;
     }
 
     [zoom >= 13][station = 'subway'] {
@@ -48,7 +48,7 @@
       text-face-name: @oblique-fonts;
       marker-width: 7;
       text-fill: @transit;
-      text-size: 12;
+      text-size: 15;
       text-wrap-width: 33; // 3 em
       text-line-spacing: -1.65; // -0.15 em
       text-dy: 13;

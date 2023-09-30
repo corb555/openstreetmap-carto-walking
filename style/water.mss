@@ -46,10 +46,10 @@
       line-join: round;
       line-clip: false;
     }
-    line-color: @water-color;
-    line-width: 0.7;
-    [zoom >= 9] { line-width: 1.2; }
-    [zoom >= 10] { line-width: 1.6; }
+    line-color: darken(@water-color, 8);
+    line-width: 0.8;
+    [zoom >= 9] { line-width: 1.3; }
+    [zoom >= 10] { line-width: 1.7; }
   }
 }
 
@@ -290,7 +290,8 @@
 
 #text-poly-low-zoom[zoom < 10],
 #text-point[zoom >= 10] {
-    opacity: 0.6;
+    //opacity: 0.6;
+
   [feature = 'natural_water'],
   [feature = 'landuse_reservoir'],
   [feature = 'landuse_basin'],
@@ -301,23 +302,27 @@
     [zoom >= 14][way_pixels <= 768000][feature = 'natural_bay'],
     [zoom >= 14][way_pixels <= 768000][feature = 'natural_strait'],
     [zoom >= 17][way_pixels <= 768000] {
+    text-fill: @water-text;
       text-name: "[name]";
-      text-size: 12;
+      text-size: 16;
       text-wrap-width: 20; // 2.5 em
       text-line-spacing: -1.5; // -0.15 em
       [way_pixels > 12000][feature != 'natural_strait'][feature != 'natural_bay'],
       [zoom >= 15][feature = 'natural_strait'],
       [zoom >= 15][feature = 'natural_bay'] {
+      text-fill: black; //@water-text;
         text-size: 12;
         text-wrap-width: 37; // 3.1 em
         text-line-spacing: -1.6; // -0.13 em
       }
       [way_pixels > 48000][feature != 'natural_strait'][feature != 'natural_bay'] {
+      text-fill: red; //@water-text;
         text-size: 15;
         text-wrap-width: 45; // 3.9 em
         text-line-spacing: -1.5; // -0.10 em
       }
       [way_pixels > 192000][feature != 'natural_strait'][feature != 'natural_bay'] {
+      text-fill: orange; //@water-text;
         text-size: 19;
         text-wrap-width: 70; // 5.0 em
         text-line-spacing: -0.95; // -0.05 em

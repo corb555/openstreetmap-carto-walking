@@ -1,4 +1,4 @@
-@ferry-route: white;
+@ferry-route: lighten(desaturate(@transit, 25), 30); //white;
 @ferry-route-text: @ferry-route;
 
 #ferry-routes {

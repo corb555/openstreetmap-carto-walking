@@ -11,6 +11,7 @@
 @entrance-permissive: darken(@building-line, 15%);
 @entrance-normal: @building-line;
 
+@religious: #E3C463;
 
 
 // All buildings are filled above zoom level (with opacity)
@@ -27,6 +28,11 @@
       line-width: 0;
       line-clip: false;
     }
+          [zoom >= 18] {
+        line-width: .8;
+        line-color: darken(@landmark-outline, 15);
+        line-opacity: .6;
+      }
 
     [building = 'museum'] {
       polygon-fill: @landmark-building-layer;
@@ -49,7 +55,7 @@
     [building = 'mosque'],
     [building = 'gurdwara'],
     [building = 'synagogue'] {
-      polygon-fill: @landmark-building-layer;
+      polygon-fill: #DEB73B;
       [zoom >= 15] {
         line-width: .6;
         line-color: @landmark-outline;

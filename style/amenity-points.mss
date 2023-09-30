@@ -28,7 +28,7 @@
 @tourism: @culture;
 @tree-color: #68AD70;
 
-@placenames: #5D6A8B;
+@placenames: #4A546E;
 @placenames-light: @placenames;
 
 @landcover-font-size: 12;
@@ -37,13 +37,13 @@
 @landcover-font-size-big: 14;
 @landcover-wrap-width-size-big: 36; // 3 em
 @landcover-line-spacing-size-big: -1.8; // -0.15 em
-@landcover-font-size-bigger: 16;
+@landcover-font-size-bigger: 20;
 @landcover-wrap-width-size-bigger: 45; // 3 em
 @landcover-line-spacing-size-bigger: -2.25; // -0.15 em
 @landcover-face-name: @oblique-fonts;
 
 @small-font-size: 10;
-@standard-font-size: 15;
+@standard-font-size: 14;
 @standard-wrap-width: 25; // 3 em
 @standard-line-spacing-size: -1.5; // -0.15 em
 @standard-font: @book-fonts;
@@ -409,7 +409,8 @@
 
   [feature = 'man_made_tower']["tower:type" = 'communication'][zoom >= 14],
   [feature = 'man_made_tower']["tower:type" = 'bell_tower'][zoom >= 14],
-  [feature = 'man_made_tower']["tower:type" = 'watchtower'][zoom >= 14]{
+  [feature = 'man_made_tower']["tower:type" = 'watchtower'][zoom >= 14],
+  [feature = 'man_made_tower']["tower:type" = 'monument'][zoom >= 14]{
     [zoom >= 14][height >= 160],
     [zoom >= 15][height >= 80],
     [zoom >= 16][height >= 40],
@@ -417,14 +418,30 @@
       marker-file: url('symbols/man_made/tower_generic.svg');
       marker-fill: @man-made-icon;
       marker-clip: false;
-      marker-width: 11;
+      marker-width: 16;
+      [height >= 40] {
+            marker-width: 20;
+      }
+      [height >= 80] {
+            marker-width: 30;
+      }
+      [height >= 120] {
+            marker-width: 40;
+      }
       ["tower:type" = 'defensive'] {
         marker-file: url('symbols/man_made/tower_defensive.svg');
       }
+
       ["tower:type" = 'observation'],
+      ["tower:type" = 'monument'],
       ["tower:type" = 'watchtower'] {
-        marker-file: url('symbols/man_made/tower_observation.svg');
+            marker-file: url('symbols/man_made/tower_generic.svg');
+
+              //marker-file: url('symbols/man_made/bell_tower.svg');
+
+        //marker-file: url('symbols/man_made/tower_observation.svg');
       }
+
       ["tower:type" = 'bell_tower'] {
         marker-file: url('symbols/man_made/bell_tower.svg');
       }
@@ -516,7 +533,7 @@
     marker-clip: false;
   }
 
-  [feature = 'amenity_hospital'][zoom >= 15] {
+  [feature = 'amenity_hospital'][zoom >= 16] {
     marker-file: url('symbols/amenity/hospital.svg');
     marker-fill: @health-color;
     marker-clip: false;
@@ -725,7 +742,7 @@
     marker-clip: false;
   }
 
-  [feature = 'historic_castle'][castle_type != 'stately'][castle_type != 'manor'][zoom >= 18],
+  [feature = 'historic_castle'][castle_type != 'stately'][castle_type != 'manor'][zoom >= 15],
   [feature = 'historic_castle'][castle_type = 'stately'][zoom >= 18],
   [feature = 'historic_castle'][castle_type = 'manor'][zoom >= 18],
   [feature = 'historic_manor'] [castle_type = 'palace'] [zoom >= 13] {
@@ -737,6 +754,7 @@
       marker-file: url('symbols/historic/palace.svg');
     }
     [castle_type = 'manor'],
+    [castle_type = 'tower'],
     [feature = 'historic_manor'] {
       marker-file: url('symbols/historic/manor.svg');
     }
@@ -749,7 +767,7 @@
     }
   }
 
-  [feature = 'historic_archaeological_site'][zoom >= 18] {
+  [feature = 'historic_archaeological_site'][zoom >= 13] [zoom < 15]{
     marker-file: url('symbols/historic/archaeological_site.svg');
     marker-fill: @culture;
     marker-clip: false;
@@ -1502,20 +1520,15 @@
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-fill: purple; //@culture;
+      text-fill: @placenames;
       // text-dy: 11;
-      [feature = 'amenity_community_centre'] {
-      //text-dy: 10;
-      }
       text-face-name: @standard-font;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
-      [feature = 'amenity_nightclub']{
-        // text-dy: 12;
-      }
     }
   }
 
+   [feature = 'amenity_nightclub'] [zoom >= 19],
   [feature = 'amenity_car_rental'][zoom >= 19],
   [feature = 'amenity_bicycle_rental'][zoom >= 18],
   [feature = 'amenity_boat_rental'][zoom >= 18],
@@ -1608,7 +1621,7 @@
   }
 
   // religious building name
-  [feature = 'amenity_place_of_worship'][zoom >= 15][way_pixels > 500]{
+  [feature = 'amenity_place_of_worship'][zoom >= 15][way_pixels > 800]{
     text-name: "[name]";
           text-fill:  @culture;  // HIGHLIGHT TEXT: RELIGIOUS
           text-wrap-width: @standard-wrap-width;
@@ -1617,7 +1630,7 @@
           text-face-name: @bold-fonts;
           text-halo-radius: @standard-halo-radius;
           text-halo-fill: @standard-halo-fill;
-          text-size: @highlight-font-size-z16;
+          text-size: @highlight-font-size-z16 - 1;
   }
 
   [feature = 'amenity_marketplace'][zoom >= 16][way_pixels > 3000],
@@ -1763,7 +1776,8 @@
     text-halo-fill: @standard-halo-fill;
   }
 
-  [feature = 'historic_castle'][zoom >= 16] [way_pixels > 5000] {
+  [feature = 'historic_castle'] [zoom >= 15]  {
+    [way_pixels > 5000] [zoom >= 15]  {
     text-name: "[name]";
     text-size: @highlight-font-size-z16;
     text-wrap-width: @standard-wrap-width;
@@ -1773,9 +1787,17 @@
     text-face-name: @bold-fonts;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
-
-    [zoom >= 17] {
-        text-size: @large-font-size;
+  }
+      [zoom >= 16] {
+        text-name: "[name]";
+    text-size: @highlight-font-size-z16;
+    text-wrap-width: @standard-wrap-width;
+    text-line-spacing: @standard-line-spacing-size;
+    text-fill: @culture;  // HIGHLIGHT TEXT: PALACE
+    text-dy: 11;
+    text-face-name: @bold-fonts;
+    text-halo-radius: @standard-halo-radius;
+    text-halo-fill: @standard-halo-fill;
     }
   }
 
@@ -1863,7 +1885,7 @@
     [zoom >= 8][way_pixels > 3000][is_building = 'no'],
     [zoom >= 17] {
       text-name: "[name]";
-      text-size: @landcover-font-size;
+      text-size: @landcover-font-size+2;
       text-wrap-width: @landcover-wrap-width-size;
       text-line-spacing: @landcover-line-spacing-size;
       [way_pixels > 12000] {
@@ -1887,12 +1909,12 @@
       }
       [feature = 'natural_wood'],
       [feature = 'landuse_forest'] {
-        text-fill: @forest-text;
+        text-fill: #21580D; //@forest-text;
       }
       [feature = 'boundary_national_park'],
       [feature = 'leisure_nature_reserve'],
       [feature = 'boundary_protected_area'] {
-        text-fill: @protected-area;
+        text-fill: #21580D;
       }
     }
   }
@@ -2263,7 +2285,7 @@
     text-halo-fill: @standard-halo-fill;
   }
 
-  [feature = 'amenity_hospital'][zoom >= 16] {
+  [feature = 'amenity_hospital'][zoom >= 15] {
     text-name: "[name]";
     text-fill: @health-color;
     text-size: @standard-font-size;
@@ -2586,8 +2608,8 @@
       text-size: @small-font-size;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
-      text-fill: darken(@airtransport, 15%);
-      // text-dy: 10;
+      text-fill: black;
+      text-dy: 10;
       text-face-name: @oblique-fonts;
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
