@@ -3,7 +3,7 @@
 
 @meadow: #97D16E;
 @park: #78AB66    ;          //  Lch(94,30,145)
-@grass: #76C25B; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
+@grass: #73AD56; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
 @forest: darken(saturate(@park, 11), 6);       // Lch(80,30,135)
 @forest-text: desaturate(@forest, 15);  // Lch(40,30,135)
 @light-forest: lighten(@forest, 20);
@@ -21,7 +21,7 @@
 @building-fill-light: lighten(@building-fill, 15);
 
 // theatre, museum
-@landmark: #E0C570;  // Goes over building fill
+@landmark: #DAC367;  // Goes over building fill
 
 // Religious,
 @landmark-building-layer:  @landmark; //   // Instead of building fill
@@ -53,7 +53,7 @@
 // --- Transport ----
 
 @transportation-area: #A645BA;
-@aerodrome-area:#83819E;
+@aerodrome-area:#B9B7CE;
 @apron: @aerodrome-area;
 @parking: #A5A29A;
 @parking-outline: @parking;
@@ -76,7 +76,7 @@
 @power: darken(@industrial, 5%);
 @power-line: darken(@industrial-line, 5%);
 @sand: #f5e9c6;
-@societal_amenities: #ffffe5;   // Lch(99,13,109)
+@societal_amenities: #F3E2D1;   // Lch(99,13,109)
 @tourism: #A9AAC7;
 @quarry: #c5c3c3;
 @military: #9B9CB6;
@@ -90,8 +90,10 @@
 
 @pitch: #6DBB67;           // Lch(85,22,168) also track
 @track: @pitch;
-@stadium: #C69FC6; // also sports_centre
+@stadium: @landmark; // also sports_centre
 @golf_course: #C5D1AF;
+
+
 
 #landcover-low-zoom[zoom < 10],
 #landcover[zoom >= 10] {
@@ -102,6 +104,7 @@
 
   ::low-zoom[zoom < 12],
   ::high-zoom[zoom >= 12] {
+
   [feature = 'leisure_swimming_pool'][zoom >= 14] {
     polygon-fill: @water-color;
     [zoom >= 17] {
@@ -318,8 +321,11 @@
     }
   }
 
+ /*
+ this is commented out
   [feature = 'landuse_forest'],
-  [feature = 'natural_wood'] {
+  [feature = 'natural_wood'] [zoom > 21] {
+        opacity: 0.6;
       [zoom >= 5] {
       polygon-fill: @light-forest;
             [way_pixels >= 4]  { polygon-gamma: 0.75; }
@@ -331,6 +337,7 @@
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
     }
   }
+  */
 
   [feature = 'landuse_farmyard'][zoom >= 10] {
     polygon-fill: @farmyard;
@@ -642,12 +649,12 @@
   [feature = 'amenity_community_centre'],
   [feature = 'amenity_social_facility'] {
     [zoom >= 10] {
-      polygon-fill: @built-up-lowzoom;
+      polygon-fill:  @societal_amenities;
       [way_pixels >= 4]  { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
     }
     [zoom >= 12] {
-      polygon-fill: @built-up-z12;
+      polygon-fill:  @societal_amenities;
     }
     [zoom >= 13] {
       polygon-fill: @societal_amenities;
@@ -877,7 +884,8 @@
   }
 
   //Also landuse = forest, converted in the SQL
-  [natural = 'wood'][zoom >= 13]::wood {
+  /*
+  [natural = 'wood'][zoom >= 21]::wood {
     polygon-pattern-file: url('symbols/leaftype_unknown.svg'); // Lch(55,30,135)
     [leaf_type = "broadleaved"] { polygon-pattern-file: url('symbols/leaftype_broadleaved.svg'); }
     [leaf_type = "needleleaved"] { polygon-pattern-file: url('symbols/leaftype_needleleaved.svg'); }
@@ -886,6 +894,7 @@
     polygon-pattern-alignment: global;
     opacity: 0.4; // The entire layer has opacity to handle overlapping forests
   }
+  */
 }
 
 #landuse-overlay {
@@ -988,6 +997,19 @@
   }
 }
 
+#hillshade[zoom>=4]{
+    raster-scaling: bilinear;
+    raster-comp-op: multiply;
+    raster-opacity: 0.85;
+
+    [zoom>=5]  {raster-opacity: 0.65;}
+    [zoom>=7]  {raster-opacity: 0.55;}
+    [zoom>=9]  {raster-opacity: 0.45;}
+    [zoom>=10] {raster-opacity: 0.40;}
+    [zoom>=14] {raster-opacity: 0.30;}
+    [zoom>=16] {raster-opacity: 0.25;}
+}
+
 #tourism-boundary {
   [tourism = 'attraction'][zoom >= 10]{
   a/line-width: 2;
@@ -1026,6 +1048,7 @@
     }
   }
 }
+
 
 #text-line {
   [feature = 'natural_arete'][zoom >= 15],

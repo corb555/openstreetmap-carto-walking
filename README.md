@@ -2,19 +2,21 @@
 
 ![screenshot](https://github.com/corb555/openstreetmap-carto-walking/blob/1fe3b736e584b62f742cadb9c64ec72148f3dbe2/seattle_z16.png)
 
-These are CartoCSS map stylesheets that emphasize pedestrian and transit exploration of an area rather than cars.  These map stylesheets can be 
+These are CartoCSS map stylesheets that emphasize a pedestrian and transit view of 
+an area rather than the typical car based view.  These map stylesheets can be 
 used in [Kosmtik](https://github.com/kosmtik/kosmtik) / Mapnik. The style is based on [openstreetmap-carto][osm-carto].
-These stylesheets can be used in your own cartography projects, and are designed to be  customised. They work with [Kosmtik][] and also with the command-line [CartoCSS][] processor.
+These stylesheets can be used in your own cartography projects, and are designed to be  customised. 
+They work with [Kosmtik][] and also with the command-line [CartoCSS][] processor.
 If you want to use the map or tiles in your project, please see the [USAGE.md](USAGE.md) document.
 
 **Style Overview:**  
 
 _The following are emphasized:_  
 * Parks, walkways, and pedestrian areas
-* Public rail transit (trains, subways, light rail). 
-* Express buses - (not currently shown - needs further investigation)
-* Bike network - (work in progress - some are highlighted)
+* Public rail and ferry transit.
 * Landmarks and Natural features 
+* Express buses - (TO DO.  not currently shown) 
+* Separated bike lanes (this seems to work better in the US than Europe)
 
 _The following are de-emphasized:_
 * Road networks
@@ -25,7 +27,7 @@ _The following are de-emphasized:_
 
 # Roadmap
 
-## Initial Release (v1.0.0, September 2023)
+## Initial Release (v1.0.0, October 2023)
 
 
 # Alternatives

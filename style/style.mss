@@ -1,6 +1,6 @@
 Map {
-    //background-color: @land-color;
-    background-image:url(img/natural_paper.png);
+    background-color: #E2F2DD; //@land-color;
+    //background-image:url(img/natural_paper.png);
 }
 
 @water-color: #668ABA;

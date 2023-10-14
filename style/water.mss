@@ -23,8 +23,6 @@
   [natural = 'water'],
   [landuse = 'reservoir'],
   [waterway = 'riverbank'] {
-          opacity:0.8;
-
     [int_intermittent = 'no'] {
       polygon-fill: @water-color;
       [way_pixels >= 4] { polygon-gamma: 0.75; }
@@ -46,10 +44,10 @@
       line-join: round;
       line-clip: false;
     }
-    line-color: darken(@water-color, 8);
-    line-width: 0.8;
-    [zoom >= 9] { line-width: 1.3; }
-    [zoom >= 10] { line-width: 1.7; }
+    line-color: @water-color;
+    line-width: 1;
+    [zoom >= 9] { line-width: 1.5; }
+    [zoom >= 10] { line-width: 1.9; }
   }
 }
 
@@ -310,20 +308,20 @@
       [way_pixels > 12000][feature != 'natural_strait'][feature != 'natural_bay'],
       [zoom >= 15][feature = 'natural_strait'],
       [zoom >= 15][feature = 'natural_bay'] {
-      text-fill: black; //@water-text;
+      text-fill: @water-text;
         text-size: 12;
         text-wrap-width: 37; // 3.1 em
         text-line-spacing: -1.6; // -0.13 em
       }
       [way_pixels > 48000][feature != 'natural_strait'][feature != 'natural_bay'] {
-      text-fill: red; //@water-text;
+      text-fill: @water-text;
         text-size: 15;
         text-wrap-width: 45; // 3.9 em
         text-line-spacing: -1.5; // -0.10 em
       }
       [way_pixels > 192000][feature != 'natural_strait'][feature != 'natural_bay'] {
-      text-fill: orange; //@water-text;
-        text-size: 19;
+      text-fill: @water-text;
+        text-size: 20;
         text-wrap-width: 70; // 5.0 em
         text-line-spacing: -0.95; // -0.05 em
       }

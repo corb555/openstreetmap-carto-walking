@@ -31,11 +31,13 @@ center:
   - 4
 format: png
 interactivity: false
-minzoom: 0
-maxzoom: 22
+minzoom: 4
+maxzoom: 20
 srs: *srs
 
 Stylesheet:
+  - style/roads.mss
+  - style/amenity-points.mss
   - style/style.mss
   - style/fonts.mss
   - style/shapefiles.mss
@@ -43,23 +45,19 @@ Stylesheet:
   - style/water.mss
   - style/water-features.mss
   - style/road-colors-generated.mss
-  - style/roads.mss
   - style/power.mss
   - style/placenames.mss
   - style/buildings.mss
   - style/stations.mss
-  - style/amenity-points.mss
   - style/ferry-routes.mss
   - style/aerialways.mss
   - style/admin.mss
   - style/addressing.mss
-  - style/golf.mss
-  - style/roller_coaster.mss
+
 
 Layer:
   - id: landcover-low-zoom
     geometry: polygon
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -88,7 +86,6 @@ Layer:
       maxzoom: 9
   - id: landcover
     geometry: polygon
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -147,7 +144,6 @@ Layer:
       minzoom: 10
   - id: landcover-line
     geometry: linestring
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -160,7 +156,6 @@ Layer:
       minzoom: 14
   - id: water-lines-low-zoom
     geometry: linestring
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -178,7 +173,6 @@ Layer:
       maxzoom: 11
   - id: water-lines
     geometry: linestring
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -202,7 +196,6 @@ Layer:
       minzoom: 12
   - id: water-areas
     geometry: polygon
-    <<: *extents
     Datasource:
       <<: *osm2pgsql
       table: |-
@@ -566,6 +559,15 @@ Layer:
         ) AS line_barriers
     properties:
       minzoom: 15
+  - id: hillshade
+    Datasource:
+      type: gdal
+      file: "img/n47_w122_cr.tif"
+    geometry: raster
+    srs-name: 900913
+    srs: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0.0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs +over
+    status: 'off'
+
   - id: cliffs
     geometry: linestring
     <<: *extents
@@ -994,40 +996,6 @@ Layer:
         ) AS guideways
     properties:
       minzoom: 11
-  - id: roller-coaster-gap-fill
-    geometry: linestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way,
-            CASE WHEN (tunnel = 'yes' OR tunnel = 'building_passage' OR covered = 'yes' OR tags->'indoor' = 'yes') THEN 'yes' ELSE 'no' END AS tunnel,
-            CASE WHEN (bridge = 'yes' OR bridge = 'covered' OR bridge = 'viaduct') THEN 'yes' ELSE 'no' END AS bridge
-          FROM planet_osm_line
-          WHERE tags @> 'roller_coaster=>track' AND railway IS NULL
-        ) AS roller_coaster
-    properties:
-      minzoom: 15
-  - id: roller-coaster
-    geometry: linestring
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way,
-            COALESCE(layer,0) AS layernotnull,
-            CASE WHEN (tunnel = 'yes' OR tunnel = 'building_passage' OR covered = 'yes' OR tags->'indoor' = 'yes') THEN 'yes' ELSE 'no' END AS tunnel,
-            CASE WHEN (bridge = 'yes' OR bridge = 'covered' OR bridge = 'viaduct') THEN 'yes' ELSE 'no' END AS bridge
-          FROM planet_osm_line
-          WHERE tags @> 'roller_coaster=>track' AND railway IS NULL
-          ORDER BY
-            layernotnull -- put bottom layered track first
-        ) AS roller_coaster
-    properties:
-      group-by: layernotnull
-      minzoom: 15
   - id: entrances
     geometry: point
     <<: *extents
@@ -1214,25 +1182,6 @@ Layer:
     properties:
       cache-features: true
       minzoom: 8
-  - id: trees
-    geometry: polygon
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            way, "natural"
-          FROM planet_osm_point
-          WHERE "natural" = 'tree'
-        UNION ALL
-        SELECT
-            way, "natural"
-          FROM planet_osm_line
-          WHERE "natural" = 'tree_row'
-        ) AS trees
-    properties:
-      cache-features: true
-      minzoom: 16
   - id: country-names
     geometry: point
     <<: *extents
@@ -1284,30 +1233,6 @@ Layer:
     properties:
       minzoom: 3
       maxzoom: 15
-  - id: state-names
-    geometry: point
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            ST_PointOnSurface(way) AS way,
-            way_area/NULLIF(POW(!scale_denominator!*0.001*0.28,2),0) AS way_pixels,
-            name,
-            admin_level,
-            ref
-          FROM planet_osm_polygon
-          WHERE ST_PointOnSurface(way) && !bbox!
-            AND name IS NOT NULL
-            AND boundary = 'administrative'
-            AND admin_level = '4'
-            AND way_area > 3000*POW(!scale_denominator!*0.001*0.28,2)
-            AND way_area < 4000000*POW(!scale_denominator!*0.001*0.28,2)
-            AND osm_id < 0
-          ORDER BY way_area DESC
-        ) AS state_names
-    properties:
-      minzoom: 4
   - id: placenames-medium
     geometry: point
     <<: *extents
@@ -1488,31 +1413,6 @@ Layer:
         ) AS bridge_text
     properties:
       minzoom: 11
-  - id: county-names
-    geometry: point
-    <<: *extents
-    Datasource:
-      <<: *osm2pgsql
-      table: |-
-        (SELECT
-            ST_PointOnSurface(way) AS way,
-            way_area/NULLIF(POW(!scale_denominator!*0.001*0.28,2),0) AS way_pixels,
-            name,
-            admin_level
-          FROM planet_osm_polygon
-          WHERE ST_PointOnSurface(way) && !bbox!
-            AND name IS NOT NULL
-            AND boundary = 'administrative'
-            AND admin_level IN ('5', '6')
-            AND way_area > 12000*POW(!scale_denominator!*0.001*0.28,2)
-            AND way_area < 196000*POW(!scale_denominator!*0.001*0.28,2)
-            AND osm_id < 0
-          ORDER BY
-            admin_level,
-            way_area DESC
-        ) AS county_names
-    properties:
-      minzoom: 8
   - id: amenity-points
     geometry: point
     <<: *extents

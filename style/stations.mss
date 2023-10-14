@@ -35,19 +35,20 @@
     marker-fill: @transit;
     marker-clip: false;
 
-    [station != 'subway'] {
-      marker-width: 9;
+    [zoom >= 10]  {
+      marker-width: 6;
     }
 
-    [zoom >= 13][station = 'subway'] {
+    [zoom >= 13] {
       marker-width: 7;
     }
 
     [zoom >= 15] {
+      marker-width: 8;
+
       text-name: "[name]";
       text-face-name: @oblique-fonts;
-      marker-width: 7;
-      text-fill: @transit;
+      text-fill: darken(@transit,20);
       text-size: 15;
       text-wrap-width: 33; // 3 em
       text-line-spacing: -1.65; // -0.15 em
@@ -55,11 +56,13 @@
     }
 
     [zoom >= 17] {
-      marker-width: 9;
-      text-size: 13;
-      text-wrap-width: 33; // 3 em
-      text-line-spacing: -1.65; // -0.15 em
-      text-dy: 10;
+      text-size: 17;
+      marker-width:13;
+    }
+
+     [zoom >= 18] {
+      text-size: 19;
+      marker-width:12;
     }
   }
 
@@ -70,9 +73,10 @@
       marker-width: 6;
       marker-clip: false;
     }
+
     [zoom >= 16] {
       text-name: "[name]";
-              text-face-name: @oblique-fonts;
+      text-face-name: @oblique-fonts;
       text-size: @standard-font-size;
       text-fill: @station-text;
       text-dy: 10;
@@ -80,6 +84,15 @@
       text-halo-fill: @standard-halo-fill;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
+    }
+
+        [zoom >= 17] {
+      marker-width: 8;
+    }
+
+    [zoom >= 18] {
+    marker-fill: orange;
+      marker-width: 10;
     }
   }
 

@@ -1,4 +1,4 @@
-@motorway-fill: #D8C79C; //#EBD9A3;
+@motorway-fill: #DDCC91; //#EBD9A3;
 @motorway-low-zoom: @motorway-fill;
 
 /* This is generated code, do not change this file manually.          */

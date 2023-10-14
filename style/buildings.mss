@@ -74,6 +74,14 @@
       }
     }
 
+    [building = 'parking']{
+      polygon-fill: lighten(@parking, 5);
+      [zoom >= 15] {
+        polygon-gamma: 0.2;
+        line-color: @building-major-line;
+      }
+    }
+
     [building = 'transportation']{
       polygon-fill: @building-fill;
       [zoom >= 15] {
