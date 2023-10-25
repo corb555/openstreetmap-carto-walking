@@ -1,4 +1,4 @@
-@ferry-route: lighten(desaturate(@transit, 25), 30); //white;
+@ferry-route: lighten(desaturate(@transit, 20), 15);
 @ferry-route-text: @ferry-route;
 
 #ferry-routes {
@@ -28,7 +28,7 @@
 }
 
 #ferry-routes-text {
-  [zoom >= 13] {
+  [zoom >= 21] {
     text-name: "[name]";
     text-face-name: @book-fonts;
     text-placement: line;

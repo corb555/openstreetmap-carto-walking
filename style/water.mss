@@ -59,7 +59,7 @@
       [int_intermittent != 'yes'][zoom >= 14],
       [zoom >= 15] {
         line-width: 2.5;
-        line-color: white;
+        line-color: lighten(@water-color, 10);
         [waterway = 'stream'][zoom >= 15] {
           line-width: 3.5;
         }
@@ -302,7 +302,7 @@
     [zoom >= 17][way_pixels <= 768000] {
     text-fill: @water-text;
       text-name: "[name]";
-      text-size: 16;
+      text-size: 12;
       text-wrap-width: 20; // 2.5 em
       text-line-spacing: -1.5; // -0.15 em
       [way_pixels > 12000][feature != 'natural_strait'][feature != 'natural_bay'],
@@ -310,11 +310,12 @@
       [zoom >= 15][feature = 'natural_bay'] {
       text-fill: @water-text;
         text-size: 12;
-        text-wrap-width: 37; // 3.1 em
+        text-wrap-width: 30; // 3.1 em
         text-line-spacing: -1.6; // -0.13 em
       }
       [way_pixels > 48000][feature != 'natural_strait'][feature != 'natural_bay'] {
       text-fill: @water-text;
+        text-fill: @water-text;
         text-size: 15;
         text-wrap-width: 45; // 3.9 em
         text-line-spacing: -1.5; // -0.10 em

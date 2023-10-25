@@ -25,10 +25,6 @@ _The following are de-emphasized:_
 
 [Installation](https://github.com/corb555/openstreetmap-carto-walking/blob/3c235f1ebef4ce4ac0e1ef6099e09885d8afbace/INSTALL.md)
 
-# Roadmap
-
-## Initial Release (v1.0.0, October 2023)
-
 
 # Alternatives
 

@@ -1,11 +1,9 @@
 // --- Fill for Parks, woods, other areas ---
-
-
 @meadow: #97D16E;
-@park: #78AB66    ;          //  Lch(94,30,145)
-@grass: #73AD56; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
+@park: #73B05E;          //  Lch(94,30,145)
+@grass: #75B455; //lighten(@park, 3);        // Lch(90,32,128) also grassland,  village_green, garden, allotments
 @forest: darken(saturate(@park, 11), 6);       // Lch(80,30,135)
-@forest-text: desaturate(@forest, 15);  // Lch(40,30,135)
+@forest-text: #487836; //desaturate(@forest, 15);  // Lch(40,30,135)
 @light-forest: lighten(@forest, 20);
 @hedge: @forest;       // Lch(80,30,135)
 @garden: darken(@park, 8);        //
@@ -13,8 +11,6 @@
 @scrub: #D6E1C1;        // Lch(84,24,122)
 @allotments: #c9e1bf;   // Lch(87,20,135)
 @orchard: #aedfa3; // also vineyard, plant_nursery
-
-
 
 // --- "Base" landuses ---
 @building-fill: #E0D596;
@@ -33,7 +29,7 @@
 @built-up-lowzoom: lighten(@building-fill, 15); //#d0d0d0;
 @built-up-z12: @built-up-lowzoom; //#dddddd;
 
-@residential: @building-fill-light;      // Lch(89,0,0)
+@residential: #EDE6B4; //@building-fill-light;      // Lch(89,0,0)
 @residential-light: lighten(@residential, 15); //#F3F2EE;      // Lch(89,0,0)
 @residential-line: darken(@residential, 20); // Lch(75,0,0)
 
@@ -76,7 +72,7 @@
 @power: darken(@industrial, 5%);
 @power-line: darken(@industrial-line, 5%);
 @sand: #f5e9c6;
-@societal_amenities: #F3E2D1;   // Lch(99,13,109)
+@societal_amenities: #EFDBC7;   // Lch(99,13,109)
 @tourism: #A9AAC7;
 @quarry: #c5c3c3;
 @military: #9B9CB6;
@@ -241,10 +237,10 @@
   }
 
   [feature = 'landuse_residential'][zoom >= 8] {
-    polygon-fill: @residential-light;
-    [zoom >= 12] { polygon-fill: @residential-light; }
+    polygon-fill: @residential;
+    [zoom >= 12] { polygon-fill: @residential; }
     [zoom >= 13] { polygon-fill: @residential; }
-    [zoom >= 16] { polygon-fill: @residential-light; }
+    [zoom >= 16] { polygon-fill: @residential; }
 
     [way_pixels >= 4]  { polygon-gamma: 0.75; }
     [way_pixels >= 64] { polygon-gamma: 0.3;  }
@@ -257,12 +253,11 @@
   }
 
   [feature = 'leisure_park'] {
-      opacity: 0.9;
 
     [zoom >= 10] {
       polygon-fill: @park;
       polygon-pattern-file:url(img/park_texture.png);
-      polygon-pattern-opacity: 0.8;
+      //polygon-pattern-opacity: 0.8;
       polygon-pattern-alignment: global;
       [way_pixels >= 4]  { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
@@ -321,10 +316,9 @@
     }
   }
 
- /*
- this is commented out
+
   [feature = 'landuse_forest'],
-  [feature = 'natural_wood'] [zoom > 21] {
+  [feature = 'natural_wood'] [zoom > 10] {
         opacity: 0.6;
       [zoom >= 5] {
       polygon-fill: @light-forest;
@@ -337,7 +331,7 @@
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
     }
   }
-  */
+
 
   [feature = 'landuse_farmyard'][zoom >= 10] {
     polygon-fill: @farmyard;

@@ -150,7 +150,7 @@
       text-name: "[name]";
       text-halo-radius: @standard-halo-radius;
       text-halo-fill: @standard-halo-fill;
-      text-fill: #222;
+      text-fill: green; //#222;
       text-size: 10;
       text-face-name: @book-fonts;
       #text-line {

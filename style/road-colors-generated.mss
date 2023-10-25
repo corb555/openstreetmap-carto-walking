@@ -1,4 +1,4 @@
-@motorway-fill: #DDCC91; //#EBD9A3;
+@motorway-fill: #E4D598;
 @motorway-low-zoom: @motorway-fill;
 
 /* This is generated code, do not change this file manually.          */
@@ -12,13 +12,13 @@
 @primary-casing: #b0ab9f;
 @secondary-casing: #ababab;
 
-@trunk-fill: #f1ddc5;
-@primary-fill: #f4ecda;
-@secondary-fill: #fbfaf0;
+@trunk-fill: #EDDA8A;
+@primary-fill: #E2DABC; //#FEF7D7;
+@secondary-fill: #FCF9E9;
 
-@trunk-low-zoom: #f1ddc5;
-@primary-low-zoom: #f4ecda;
-@secondary-low-zoom: #fbfaf0;
+@trunk-low-zoom: @trunk-fill;
+@primary-low-zoom: @primary-fill;
+@secondary-low-zoom: @secondary-fill;
 
 @motorway-low-zoom-casing: #aa652c;
 @trunk-low-zoom-casing: #b27d25;

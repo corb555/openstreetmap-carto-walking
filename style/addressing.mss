@@ -67,7 +67,7 @@ not official postal addresses) */
    opacity: .7;
     text-name: "[name]";
     text-face-name: @book-fonts;
-    text-fill: @address-color;
+    text-fill: @placenames;
     text-halo-radius: @standard-halo-radius;
     text-halo-fill: @standard-halo-fill;
     text-size: 12;

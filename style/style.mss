@@ -1,5 +1,5 @@
 Map {
-    background-color: #E2F2DD; //@land-color;
+    background-color: #EBF0E4; //@land-color;
     //background-image:url(img/natural_paper.png);
 }
 
