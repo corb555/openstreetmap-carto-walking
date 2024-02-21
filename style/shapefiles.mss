@@ -1,5 +1,6 @@
+/*
 #necountries {
-  [zoom >= 1][zoom < 4] {
+  [zoom >= 21] {
     line-width: 0.2;
     [zoom >= 2] {
       line-width: 0.3;
@@ -9,11 +10,11 @@
     }
     line-color: @placenames;
   }
-}
+} */
 
 #ocean-lz,
 #ocean {
-  polygon-fill: @water-color;
+  polygon-fill: darken(@water-color,10);
 }
 
 

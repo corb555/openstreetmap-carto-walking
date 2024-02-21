@@ -1,22 +1,22 @@
 /* Water Structures */
-@breakwater-color: #aaa; /* Also for groyne */
-@dam: #adadad;
-@dam-line: #444444;
+@breakwater-color: lighten(@pier-color, 15); /* Also for groyne */
+
+@dam-line: darken(@dam, 20);
 @weir-line: #aaa;
 @lock-gate: #aaa;
 @lock-gate-line: #aaa;
-@pier-color:#DBC89F;
+
 
 #water-barriers-point, #water-barriers-line, #water-barriers-poly {
   [waterway = 'dam'] {
-    #water-barriers-poly[zoom >= 13] {
+    #water-barriers-poly[zoom >= 12] {
       line-width: 2;
       line-color: @dam-line;
       line-join: round;
       line-cap: round;
       polygon-fill: @dam;
     }
-    #water-barriers-line[zoom >= 13] {
+    #water-barriers-line[zoom >= 12] {
       line-width: 2;
       line-color: @dam-line;
       line-join: round;
@@ -67,15 +67,14 @@
 }
 
 #piers-poly, #piers-line {
-  [man_made = 'pier'][zoom >= 12] {
+  [man_made = 'pier'][zoom >= 14]  {
     #piers-poly {
-      polygon-fill: @land-color;
+      polygon-fill: @pier-color; //#B9B8AB;
     }
     #piers-line {
       line-width: 0.5;
-      line-color: @land-color;
+      line-color: @pier-color;
       line-cap: square;
-      [zoom >= 13] { line-width: 1; }
       [zoom >= 15] { line-width: 2; }
       [zoom >= 17] { line-width: 4; }
     }

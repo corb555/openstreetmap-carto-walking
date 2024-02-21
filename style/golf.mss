@@ -7,11 +7,13 @@
     [feature = 'golf_fairway'],
     [feature = 'golf_rough'],
     [feature = 'golf_driving_range'] {
+      polygon-opacity: @fill-opacity;
       polygon-fill: @golf_course;
     }
   }
   ::high-zoom[zoom >= 13] {
     [feature = 'golf_green'] {
+      polygon-opacity: @fill-opacity;
       polygon-fill: @golf_course;
     }
     [feature = 'golf_bunker'] {

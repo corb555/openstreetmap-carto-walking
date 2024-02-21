@@ -7,11 +7,11 @@
     marker-file: url('symbols/amenity/entrance.svg');
     marker-fill: @transportation-icon;
     marker-clip: false;
-      [zoom >= 16] {
+      [zoom >= 21] {
       text-name: [ref];
       text-face-name: @bold-fonts;
       text-size: 15;
-      text-fill: @transportation-text;
+      text-fill: @transit-text;
       text-dy: 10;
       text-halo-radius: @standard-halo-radius * 1.5;
       text-halo-fill: @standard-halo-fill;
@@ -21,7 +21,7 @@
       text-name: [ref];
       text-face-name: @bold-fonts;
       text-size: 14;
-      text-fill: @transportation-text;
+      text-fill: @transit-text;
       text-dy: 10;
       text-halo-radius: @standard-halo-radius * 1.5;
       text-halo-fill: @standard-halo-fill;
@@ -29,57 +29,60 @@
     }
   }
 
-  [railway = 'station'][zoom >= 10] {
+  [railway = 'station'][zoom >= 12] {
     marker-file: url('symbols/square.svg');
     marker-fill: @transit;
     marker-clip: false;
+    marker-width: 5;
 
-    [zoom >= 10]  {
-      marker-fill: lighten(@transit, 10);
-      marker-width: 3;
-    }
-    [zoom >= 12] {
-      marker-fill: lighten(@transit, 10);
+    [zoom >= 8]  {
       marker-width: 5;
     }
-    [zoom >= 13] {
-      marker-width: 7;
+    [zoom >= 10] {
+      marker-width: 5;
     }
-    [zoom >= 14] {
-      marker-width: 8;
+    [zoom >= 12] {
+      marker-width: 6;
+    }
+    [zoom >= 15] {
+      marker-width: 9;
       text-name: "[name]";
       text-face-name: @oblique-fonts;
-      text-fill: darken(@transit,5);
-      text-size: 11;
+      text-fill: @transit-text;
+      text-size: @standard-font-size;
       text-wrap-width: 53; // 3 em
       text-line-spacing: -1.65; // -0.15 em
-      text-dy: 11;
+      text-dy: 12;
+    }
+    [zoom >= 16] {
+      text-size: @standard-font-size;
+      marker-width:10;
     }
     [zoom >= 17] {
-      text-size: 17;
-      marker-width:8;
+      text-size: @standard-font-size;
+      //marker-width:8;
     }
      [zoom >= 18] {
-      text-size: 19;
-      marker-width:9;
+      text-size: @standard-font-size;
+      //marker-width:9;
     }
   }
 
     [railway = 'tram_stop'] {
       [zoom >= 15] {
         marker-file: url('symbols/square.svg');
-        marker-fill: @transit_station2;
+        marker-fill: @transit;
         marker-width: 6;
         marker-clip: false;
       }
       [zoom >= 16] {
         text-name: "[name]";
         text-face-name: @oblique-fonts;
-        text-size: @standard-font-size;
-        text-fill: @station-text;
-        text-dy: 10;
-        text-halo-radius: @standard-halo-radius * 1.5;
-        text-halo-fill: @standard-halo-fill;
+        text-size: @standard-font-size - 3;
+        text-fill: @transit-text;
+        text-dy: 12;
+        //text-halo-radius: @standard-halo-radius * 1.5;
+        //text-halo-fill: @standard-halo-fill;
         text-wrap-width: @standard-wrap-width;
         text-line-spacing: @standard-line-spacing-size;
       }
@@ -94,7 +97,7 @@
   [aerialway = 'station']::aerialway {
     [zoom >= 13] {
       marker-file: url('symbols/square.svg');
-      marker-fill: @transit_station;
+      marker-fill: darken(@aerialway-color,10);  //@transit_station;
       marker-width: 4;
       marker-clip: false;
     }
@@ -105,7 +108,7 @@
       text-name: "[name]";
       text-face-name: @book-fonts;
       text-size: @standard-font-size;
-      text-fill: @station-text;
+      text-fill: @transit-text;
       text-dy: 10;
       text-halo-radius: @standard-halo-radius * 1.5;
       text-halo-fill: @standard-halo-fill;

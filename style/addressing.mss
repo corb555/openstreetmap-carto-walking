@@ -1,4 +1,4 @@
-/* Features related to (postal) adresses: */
+/* Features related to (postal) addresses: */
 
 @address-color: #272EB6;
 
@@ -58,18 +58,17 @@
   }
 }
 
-/* Building names (rendered differently from addresses because they are
-not official postal addresses) */
+/* Building names  */
 
 #building-text {
-  [zoom >= 14][zoom <= 19][way_pixels > 1000]
+  [zoom >= 14][zoom <= 19]  [name != null][way_pixels > 700]
+  [zoom >= 18] [name != null]
    {
-   opacity: .7;
+    text-allow-overlap: false;
+    opacity: .7;
     text-name: "[name]";
     text-face-name: @book-fonts;
-    text-fill: @placenames;
-    text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
+    text-fill: red; //@culture;
     text-size: 12;
     text-wrap-width: 22; // 2.0 em
     text-line-spacing: -1.65; // -0.15 em

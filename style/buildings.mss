@@ -1,51 +1,34 @@
-// Building Fill
 
-@building-line: darken(@building-fill, 15%);  // Lch(70, 9, 66)
-@building-low-zoom: darken(@building-fill, 4%);
-
-@building-major-fill: darken(@building-fill, 18%);  // Lch(75, 8, 67)
-@building-major-line: darken(@building-major-fill, 20%);  // Lch(61, 13, 65)
-@building-major-z15: darken(@building-major-fill, 16%);  // Lch(70, 9, 66)
-@building-major-z14: darken(@building-major-fill, 16%);  // Lch(66, 11, 65)
-
-@entrance-permissive: darken(@building-line, 15%);
+@entrance-permissive: darken(@building-line, 15);
 @entrance-normal: @building-line;
 
-@religious: #E3C463;
+// Building Fill (building names are in Addressing and Amenity-Points)
 
-
-// All buildings are filled above zoom level (with opacity)
+// All buildings are filled when above zoom level below (with opacity)
 // Some buildings are also filled in landcover.mss
 // Museum, Transit, and Religious get special fill
+
 #buildings {
-  [zoom >= 15]    {
+  [zoom >= 16]    {
     polygon-fill: @building-low-zoom;
     polygon-clip: false;
-    opacity: 0.6;
-    [zoom >= 15] {
-      polygon-fill: @building-fill;
-      line-color: @building-line;
-      line-width: 0;
-      line-clip: false;
+    [zoom >= 16] {
+       opacity: 1;
+       polygon-fill: @building-fill;
     }
-          [zoom >= 18] {
+    [zoom >= 16] {
         line-width: .8;
-        line-color: darken(@landmark-outline, 15);
-        line-opacity: .6;
-      }
+        line-color: @building-line;
+    }
 
     [building = 'museum'] {
+      opacity: 1;
       polygon-fill: @landmark-building-layer;
       line-width: .6;
       line-opacity: .6;
       line-color: @landmark-outline;
-      line-pattern-file:url(img/line_solid_6.png);
-      ::shadow {
-        polygon-fill: #000;
-        polygon-geometry-transform:translate(0,2);
-        image-filters:agg-stack-blur(3,3);
-        opacity:0.3;
-      }
+      //line-pattern-file:url(img/line_solid_6.png);
+
     }
 
     [building = 'temple'],
@@ -55,7 +38,8 @@
     [building = 'mosque'],
     [building = 'gurdwara'],
     [building = 'synagogue'] {
-      polygon-fill: #DEB73B;
+      opacity: 1;
+      polygon-fill: @religious-building;
       [zoom >= 15] {
         line-width: .6;
         line-color: @landmark-outline;
@@ -67,11 +51,12 @@
     [aerialway = 'station'],
     [building = 'train_station'],
     [public_transport = 'station'] {
-      polygon-fill: @building-transit;
-      [zoom >= 15] {
-        polygon-gamma: 0.2;
-        line-color: @building-major-line;
-      }
+       opacity: 1;
+       polygon-fill: @building-transit;
+       [zoom >= 15] {
+         polygon-gamma: 0.2;
+         line-color: @building-major-line;
+       }
     }
 
     [building = 'parking']{
@@ -83,15 +68,17 @@
     }
 
     [building = 'transportation']{
-      polygon-fill: @building-fill;
-      [zoom >= 15] {
-        polygon-gamma: 0.2;
-        line-color: @building-major-line;
-      }
+       opacity: 1;
+       polygon-fill: @building-fill;
+       [zoom >= 15] {
+         polygon-gamma: 0.2;
+         line-color: @building-major-line;
+       }
     }
   }
 }
 
+/*
 #bridge {
   [zoom >= 12] {
     polygon-fill: #B8B8B8;
@@ -138,4 +125,4 @@
     marker-width: 8.0;
     marker-height: 8.0;
   }
-}
+} */

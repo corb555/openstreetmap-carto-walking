@@ -1,4 +1,5 @@
-@aerialway-color: #6C7281;
+@aerialway-color: #E9E293;
+@chairlift-color: desaturate(@aerialway-color, 15);
 
 #aerialways {
   [aerialway = 'cable_car'],
@@ -9,6 +10,7 @@
       line/line-join: round;
       line/line-cap: round;
       line/line-color: @aerialway-color;
+      line/line-opacity: .7;
 
       dash/line-width: 3;
       dash/line-join: round;
@@ -42,14 +44,15 @@
   [aerialway = 'rope_tow'],
   [aerialway = 'zip_line'] {
     [zoom >= 12] {
-      line/line-width: 1;
+      line/line-width: .8;
       line/line-join: round;
       line/line-cap: round;
-      line/line-color: @aerialway-color;
+      line/line-color: @chairlift-color;
+      line/line-opacity: .7;
 
-      dash/line-width: 4;
+      dash/line-width: 3;
       dash/line-join: round;
-      dash/line-color: @aerialway-color;
+      dash/line-color: @chairlift-color;
       dash/line-dasharray: 1,30;
       dash/line-clip: false;
     }
