@@ -3,8 +3,12 @@ layers/
 data/
 fonts/
 tmp/
-*.xml
-*.osm.pbf
+img/
+imported/
+*.png
+*.tif
+*.pbf
+*.done
 node_modules/
 localconfig.json
 localconfig.js
