@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo Import the OSM nodes extract file and the OSM ways extract file into GIS database
+echo Import  OSM nodes extract files and the OSM ways extract files into GIS database
 echo Directory: "$1"
 echo File list: "$2"
 # Working dir:  opencarto main directory
@@ -9,6 +9,7 @@ echo File list: "$2"
 cat "$1"/"$2"
 
 while read name; do
+    echo "====="
     echo Import NODES: osm2pgsql "$1"/"$name".nodes.osm
     osm2pgsql -d gis --append --slim  -G --hstore --tag-transform-script openstreetmap-carto.lua  -S openstreetmap-carto.style "$1"/"$name".nodes.osm
     echo Import WAYS: osm2pgsql "$1"/"$name".ways.osm

@@ -1,0 +1,117 @@
+import sys
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QTableWidget, QTableWidgetItem, QVBoxLayout, QWidget, QPushButton, QColorDialog
+from PyQt6.QtGui import QColor
+from PyQt6 import QtCore
+
+class ConfigEditor(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+        self.setWindowTitle('Config Editor')
+        self.central_widget = QWidget(self)
+        self.setCentralWidget(self.central_widget)
+        self.layout = QVBoxLayout(self.central_widget)
+
+        self.table = QTableWidget()
+        self.table.setColumnCount(4)  # Added a column for comments
+        self.table.setHorizontalHeaderLabels(['Variable Name', 'HEX Value', 'Color', 'Comments'])
+        self.table.itemDoubleClicked.connect(self.open_color_picker)
+        self.layout.addWidget(self.table)
+
+        self.open_button = QPushButton('Open')
+        self.open_button.clicked.connect(self.open_file)
+        self.open_button.setStyleSheet('background-color: blue; color: white;')
+        self.open_button.setFixedWidth(60)  # Set the width to 60 pixels
+        self.layout.addWidget(self.open_button)
+
+        self.save_button = QPushButton('Save')
+        self.save_button.clicked.connect(self.save_file)
+        self.save_button.setStyleSheet('background-color: blue; color: white;')
+        self.layout.addWidget(self.save_button)
+
+        self.config_data = {}
+        self.current_file_path = ''  # Store the path of the opened file
+
+        # Set background color to light gray and text color to black
+        self.setStyleSheet('background-color: #f0f0f0; color: black;')
+
+    def open_file(self):
+        file_path, _ = QFileDialog.getOpenFileName(self, 'Open Config File', '', 'Config Files (*.mss)')
+        if file_path:
+            self.current_file_path = file_path  # Store the path of the opened file
+            self.config_data.clear()
+            self.table.setRowCount(0)
+
+            with open(file_path, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    line = line.strip()
+                    if line.endswith(';'):
+                        parts = line.split(':')
+                        if len(parts) == 2:
+                            variable_name = parts[0][1:].strip()  # Strip '@' and spaces
+                            hex_value = parts[1].strip()[:-1]  # Strip ';' from HEX value
+                            comments = ''  # Default value for comments
+                            if '//' in line:
+                                comments = '//' + line.split('//')[1].strip()  # Get comments after '//'
+                            if hex_value.startswith('#') and len(hex_value) == 7:
+                                self.config_data[variable_name] = {'hex': hex_value, 'comments': comments}
+                            else:
+                                print(f'Invalid line: {line}')
+                        else:
+                            print(f'Invalid line: {line}')
+                    elif line:
+                        print(f'Invalid line: {line}')
+
+            self.populate_table()
+            self.save_button.setEnabled(True)  # Enable Save button after opening file
+
+    def populate_table(self):
+        self.table.setRowCount(len(self.config_data))
+
+        row = 0
+        for variable_name, data in self.config_data.items():
+            variable_item = QTableWidgetItem(variable_name)
+            hex_item = QTableWidgetItem(data['hex'])
+            color_item = QTableWidgetItem()
+            color_item.setBackground(QColor(data['hex']))
+            comments_item = QTableWidgetItem(data['comments'])
+
+            self.table.setItem(row, 0, variable_item)
+            self.table.setItem(row, 1, hex_item)
+            self.table.setItem(row, 2, color_item)
+            self.table.setItem(row, 3, comments_item)
+
+            row += 1
+
+    def save_file(self):
+        if self.current_file_path:
+            file_path, _ = QFileDialog.getSaveFileName(self, 'Save Config File', self.current_file_path, 'Config Files (*.mss)')
+        else:
+            file_path, _ = QFileDialog.getSaveFileName(self, 'Save Config File', '', 'Config Files (*.mss)')
+
+        if file_path:
+            with open(file_path, 'w') as file:
+                for variable_name, data in self.config_data.items():
+                    file.write(f'@{variable_name}: {data["hex"]}; {data["comments"]}\n')
+                    print(f'@{variable_name}: {data["hex"]}; {data["comments"]}')  # Print each line
+
+        self.save_button.setEnabled(False)  # Disable Save button after saving
+
+    def open_color_picker(self, item):
+        if item.column() == 1:
+            hex_value_item = self.table.item(item.row(), 1)
+            hex_value = hex_value_item.text()
+            color = QColorDialog.getColor(QColor(hex_value), self, 'Select Color')
+            if color.isValid():
+                hex_value_item.setText(color.name())
+                self.table.item(item.row(), 2).setBackground(color)
+                self.config_data[self.table.item(item.row(), 0).text()]['hex'] = color.name()  # Update hex value in data
+                self.save_button.setEnabled(True)  # Enable Save button after color change
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    editor = ConfigEditor()
+    editor.resize(600, 400)
+    editor.show()
+    sys.exit(app.exec())
