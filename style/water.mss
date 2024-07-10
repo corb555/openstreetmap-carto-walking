@@ -1,15 +1,13 @@
-@water-text: lighten(@water-color, 60);
-@water-halo-fill: @water-color;
-@glacier: #ddecec;
-@glacier-line: #9cf;
-@waterway-text-repeat-distance: 200;
-@int-water: #A6C7D8;
+
+
+@waterway-text-repeat-distance: 600;
+
 
 #water-areas {
   [natural = 'glacier']::natural {
-    [zoom >= 7] {
+    [zoom >= 8] {
       polygon-fill: @glacier;
-      polygon-opacity: .5;
+      polygon-opacity: .4;
     }
   }
 
@@ -21,14 +19,15 @@
   [landuse = 'reservoir'],
   [waterway = 'river'],
   [waterway = 'riverbank'] {
-    [int_intermittent = 'no'] [zoom >= 8] {
+    [int_intermittent = 'no'] [zoom >= 8][way_pixels >= 200] ,
+    [int_intermittent = 'no'] [zoom >= 17]
+    {
       polygon-fill:  @river-color;
       polygon-opacity:1;
       [way_pixels >= 4] { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.6; }
-
     }
-    [int_intermittent = 'yes'] [zoom >= 11] {
+    [int_intermittent = 'yes'] [zoom >= 11] [way_pixels >= 200]{
       polygon-fill: @int-water;
       polygon-opacity: .7;
     }
@@ -39,28 +38,19 @@
 }
 
 #water-lines-low-zoom {
-  [waterway = 'river'][zoom >= 7][zoom < 12] {
-    [int_intermittent = 'yes'][zoom >= 11] {
-      line-dasharray: 8,4;
-      line-cap: butt;
-      line-join: round;
-      line-clip: false;
-      line-color:  @int-water;
-    }
-
+  [waterway = 'river'][zoom >= 6][zoom <= 11] {
+    //water/line-color: @river-color;
+    //water/line-width: 1;
     line-color:  @river-color;
-    line-width: 1.7;
-    line-opacity: .5;
-    [zoom >= 9] { line-width: 1.4; }
-    [zoom >= 10] { line-width: 1.5; }
+    line-width: .5;
+    line-opacity: .8;
+    [zoom >= 7] { line-width: .7; }
+    [zoom >= 9] { line-width: 1; }
+    [zoom >= 10] { line-width: 1; }
     [zoom >= 11] {
-       line-width: 1.9;
-       line-opacity: .6;
+       line-width: 1;
+       //line-opacity: 1;
        }
-    [zoom >= 15] {
-       line-opacity:1;
-       line-color: @river-color;
-    }
   }
 }
 
@@ -88,7 +78,7 @@
     }
 
     water/line-color: @river-color;
-    water/line-width: 1.7;
+    water/line-width: 1.2;
     water/line-cap: round;
     water/line-join: round;
 
@@ -111,8 +101,8 @@
     }
 
     [zoom >= 13] { water/line-width: 3; }
-    [zoom >= 14] { water/line-width: 5; }
-    [zoom >= 15] { water/line-width: 6; }
+    [zoom >= 14] { water/line-width: 4; }
+    [zoom >= 15] { water/line-width: 5; }
     [zoom >= 17] { water/line-width: 10; }
     [zoom >= 18] { water/line-width: 12; }
 
@@ -140,7 +130,7 @@
   [waterway = 'stream'],
   [waterway = 'ditch'],
   [waterway = 'drain'] {
-    [int_intermittent != 'yes'][zoom >= 14],
+    [int_intermittent != 'yes'][zoom >= 13],
     [zoom >= 17] {
        //water/line-width: 1.6;
       // the additional line of land color is used to provide a background for dashed casings
@@ -203,7 +193,7 @@
   [lock != 'yes'][int_tunnel != 'yes'] {
     [waterway = 'river'][zoom >= 7] {
       text-name: "[name]";
-      text-size: 10;
+      text-size: 13;
       text-face-name: @oblique-fonts;
       text-fill: @water-text;
       text-halo-radius: @standard-halo-radius;
@@ -211,12 +201,14 @@
       text-spacing: 1600;
       text-placement: line;
       text-repeat-distance: @waterway-text-repeat-distance;
-      [zoom >= 14] { text-size: 12; }
+      [zoom >= 14] {
+        text-size: 15;
+        }
     }
 
     [waterway = 'canal'][zoom >= 13] {
       text-name: "[name]";
-      text-size: 10;
+      text-size: 12;
       text-face-name: @oblique-fonts;
       text-fill: @water-text;
       text-halo-radius: @standard-halo-radius;
@@ -229,9 +221,9 @@
       text-name: "[name]";
       text-size: 11;
       text-face-name: @oblique-fonts;
-      text-fill: @water-color;
-      //text-halo-radius: @standard-halo-radius;
-      //text-halo-fill: @water-halo-fill;
+      text-fill: @water-text;
+      text-halo-radius: @standard-halo-radius;
+      text-halo-fill: @water-halo-fill;
       text-spacing: 600;
       text-placement: line;
       text-vertical-alignment: middle;
@@ -243,7 +235,7 @@
     [waterway = 'ditch'] {
       [zoom >= 15] {
         text-name: "[name]";
-        text-size: 10;
+        text-size: 8;
         text-face-name: @oblique-fonts;
         text-fill: @water-text;
         text-halo-radius: @standard-halo-radius;
@@ -259,7 +251,7 @@
   [natural = 'bay'][zoom >= 10],
   [natural = 'strait'][zoom >= 10] {
     text-name: "[name]";
-    text-size: 12;
+    text-size: 14;
     text-face-name: @oblique-fonts;
     text-fill: @water-text;
     text-halo-radius: @standard-halo-radius;
@@ -267,8 +259,9 @@
     text-max-char-angle-delta: 15;
     text-spacing: 400;
     text-placement: line;
+
     [zoom >= 15] {
-      text-size: 12;
+      text-size: 14;
     }
   }
 }
@@ -276,7 +269,6 @@
 
 #text-poly-low-zoom[zoom < 10],
 #text-point[zoom >= 10] {
-
   [feature = 'natural_lake'],
   [feature = 'natural_water'],
   [feature = 'landuse_reservoir'],
@@ -284,29 +276,37 @@
   [feature = 'waterway_dock'],
   [feature = 'natural_strait'],
   [feature = 'natural_bay'] {
-    [zoom >= 5] [way_pixels > 12000],
-    [zoom >= 16] ,
-    [zoom >= 14] [way_pixels > 1200]{
-      text-fill: @water-text;
+    [zoom >= 5] [way_pixels > 9000],
+    [zoom >= 16] [way_pixels > 1200],
+    [zoom >= 17] {
+      text-fill: white;
       text-name: "[name]";
-      text-size: 10;
+      text-size: 11;
       text-wrap-width: 15; // 2.5 em
       text-line-spacing: -1.5; // -0.15 em
       text-face-name: @oblique-fonts;
       text-placement: interior;
+      text-dy: 7;
+      text-halo-radius: @standard-halo-radius;
+      text-halo-fill: @water-halo-fill;
 
-      [way_pixels > 1500] {
+      [way_pixels > 1000] {
+            //text-fill: @water-text;
             text-size: 12;
       }
 
+      [way_pixels > 9000] {
+            text-size: 14;
+      }
+
       [way_pixels > 12000]{
-        text-size: 12;
+        text-size: 15;
         text-wrap-width: 15; // 3.1 em
         text-line-spacing: -1.6; // -0.13 em
       }
 
       [way_pixels > 48000] {
-      text-fill: @water-text;
+      //text-fill: @water-text;
         text-size: 15;
         text-wrap-width: 15; // 3.9 em
         text-line-spacing: -1.5; // -0.10 em

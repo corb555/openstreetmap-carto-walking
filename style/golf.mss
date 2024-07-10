@@ -34,7 +34,7 @@
   }
 }
 
-#text-line[zoom >= 16] {
+#text-line[zoom >= 21] {
   [feature = 'golf_hole'][ref != ''],
   [feature = 'golf_hole'][name != ''] {
     text-placement: line;
@@ -51,7 +51,7 @@
   }
 }
 
-#amenity-points[zoom >= 16] {
+#amenity-points[zoom >= 21] {
   [feature = 'golf_pin'] {
     marker-file: url('symbols/leisure/golf_pin.svg');
     marker-fill: @golf_course;
@@ -59,7 +59,7 @@
   }
 }
 
-#text-point[zoom >= 17] {
+#text-point[zoom >= 21] {
   [feature = 'golf_pin'][ref != ''] {
     text-name: "[ref]";
     text-size: @standard-font-size;

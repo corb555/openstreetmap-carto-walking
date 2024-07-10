@@ -1,4 +1,4 @@
-@ferry-route: desaturate(lighten(@water-color, 5),13); //#D1D5E1;
+@ferry-route: #ABB0C3 ; //#D1D5E1;
 @ferry-route-text: @ferry-route;
 
 #ferry-routes {
@@ -21,14 +21,14 @@
     }
     [zoom >= 14] {
       background/line-width: 1;
-      line-width: 2;
+      line-width: 1.5;
       line-dasharray: 6,2;
     }
   }
 }
 
 #ferry-routes-text {
-  [zoom >= 21] {
+  [zoom >= 14] {
     text-name: "[name]";
     text-face-name: @book-fonts;
     text-placement: line;

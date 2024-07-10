@@ -10,6 +10,8 @@ Overlapping borders are hidden by a white background line, rendered before each 
 Then all three layers are added to the rendering with comp-op: darken, so that the white lines will not show
 */
 
+
+/*  COMMENTED OUT
 #admin-low-zoom[zoom < 8],
 #admin-mid-zoom[zoom >= 8][zoom < 13],
 #admin-high-zoom[zoom >= 13] {
@@ -305,17 +307,17 @@ Then all three layers are added to the rendering with comp-op: darken, so that t
   ::firstline { opacity: 0.5; }
   ::wideline { opacity: 0.5; }
   ::narrowline { opacity: 0.6; }
-  /*
-  The following code prevents admin boundaries from being rendered on top of
-  each other. Comp-op works on the entire attachment, not on the individual
-  border. Therefore, this code generates an attachment containing a set of
-  @admin-boundaries/white dashed lines (of which only the top one is visible),
-  and with `comp-op: darken` the white part is ignored, while the
-  @admin-boundaries colored part is rendered (as long as the background is not
-  darker than @admin-boundaries).
-  The SQL has `ORDER BY admin_level`, so the boundary with the lowest
-  admin_level is rendered on top, and therefore the only visible boundary.
-  */
+
+  //The following code prevents admin boundaries from being rendered on top of
+  //each other. Comp-op works on the entire attachment, not on the individual
+  //border. Therefore, this code generates an attachment containing a set of
+  //@admin-boundaries/white dashed lines (of which only the top one is visible),
+  //and with `comp-op: darken` the white part is ignored, while the
+  //@admin-boundaries colored part is rendered (as long as the background is not
+  //darker than @admin-boundaries).
+  //The SQL has `ORDER BY admin_level`, so the boundary with the lowest
+  //admin_level is rendered on top, and therefore the only visible boundary.
+
   ::firstline,
   ::wideline,
   ::narrowline { comp-op: darken; }
@@ -445,6 +447,7 @@ Then all three layers are added to the rendering with comp-op: darken, so that t
   }
 }
 
+
 #admin-text[zoom >= 11][way_pixels >= 196000] {
   [admin_level = '1'][way_pixels >= 360000],
   [admin_level = '2'][way_pixels >= 360000],
@@ -472,23 +475,5 @@ Then all three layers are added to the rendering with comp-op: darken, so that t
     text-dy: -10;
   }
 }
-
-#protected-areas-text[zoom >= 13][way_pixels > 192000] {
-  text-name: "[name]";
-  text-face-name: @book-fonts;
-  text-fill: @protected-area;
-  [boundary='aboriginal_lands'] {
-    text-fill: @aboriginal;
-  }
-  text-halo-radius: @standard-halo-radius;
-  text-halo-fill: @standard-halo-fill;
-  text-largest-bbox-only: false;
-  text-placement: line;
-  text-spacing: 750;
-  text-repeat-distance: 250;
-  text-margin: 10;
-  text-clip: true;
-  text-vertical-alignment: middle;
-  text-dy: -10;
-}
+*/
 

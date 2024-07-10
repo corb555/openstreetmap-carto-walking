@@ -67,16 +67,28 @@
 }
 
 #piers-poly, #piers-line {
+  [man_made = 'quay'][zoom >= 14] ,
   [man_made = 'pier'][zoom >= 14]  {
     #piers-poly {
       polygon-fill: @pier-color; //#B9B8AB;
+      text-name: "[name]";
+      text-halo-radius: @standard-halo-radius;
+      text-halo-fill: @standard-halo-fill;
+      text-fill: @highlight;
+      text-dy: 12;
+      text-size: 15;
+      text-face-name: @book-fonts;
+      text-wrap-width: @standard-wrap-width;
+
+
     }
     #piers-line {
-      line-width: 0.5;
-      line-color: @pier-color;
-      line-cap: square;
-      [zoom >= 15] { line-width: 2; }
-      [zoom >= 17] { line-width: 4; }
+      [zoom >= 15] {
+        line-color: @pier-color;
+        line-cap: square;
+        line-width: 1;
+       }
+      [zoom >= 17] { line-width: 3; }
     }
   }
 
@@ -84,6 +96,13 @@
   [man_made = 'groyne'][zoom >= 12] {
     #piers-poly {
       polygon-fill: @breakwater-color;
+      text-name: "[name]";
+      //text-halo-radius: @standard-halo-radius;
+      //text-halo-fill: @standard-halo-fill;
+      text-fill: #222;
+      text-size: 10;
+      text-face-name: @book-fonts;
+      text-wrap-width: @standard-wrap-width;
     }
     #piers-line {
       line-width: 1;
@@ -95,7 +114,7 @@
 }
 
 #marinas-area {
-  [zoom >= 14] {
+  [zoom >= 21] {
     a/line-width: 1;
     a/line-offset: -0.5;
     a/line-color: blue;
@@ -124,11 +143,12 @@
     #text-point[zoom >= 15],
     #text-line[zoom >= 15] {
       text-name: "[name]";
-      text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
+      //text-halo-radius: @standard-halo-radius;
+      //text-halo-fill: @standard-halo-fill;
       text-fill: #222;
       text-size: 10;
       text-face-name: @book-fonts;
+      text-wrap-width: @standard-wrap-width;
       #text-line {
         text-placement: line;
         text-dy: 8;
@@ -143,13 +163,13 @@
 
   [feature = 'man_made_breakwater'][zoom >= 15],
   [feature = 'man_made_groyne'][zoom >= 15],
-  [feature = 'man_made_pier'][zoom >= 15] {
+  [feature = 'man_made_pier'][zoom >= 15] [way_pixels > 75] {
     #text-point,
     #text-line {
       text-name: "[name]";
-      text-halo-radius: @standard-halo-radius;
-      text-halo-fill: @standard-halo-fill;
-      text-fill: green; //#222;
+      //text-halo-radius: @standard-halo-radius;
+      //text-halo-fill: @standard-halo-fill;
+      text-fill: red; //@culture;
       text-size: 10;
       text-face-name: @book-fonts;
       #text-line {

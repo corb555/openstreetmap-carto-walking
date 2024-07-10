@@ -19,7 +19,7 @@
 
       [tunnel = 'yes'] { line-color: lighten(#000, 20%); }
 
-      [zoom >= 17] { line-width: 4 + @bridge-casing-width-z17; }
+      [zoom >= 17] { line-width: 3 + @bridge-casing-width-z17; }
       [zoom >= 18] { line-width: 6 + 1.5 * @bridge-casing-width-z18; }
       [zoom >= 19] { line-width: 8 + 2 * @bridge-casing-width-z19; }
       [zoom >= 20] { line-width: 12 + 2 * @bridge-casing-width-z20; }
@@ -37,7 +37,7 @@
         line-color: @track-casing;
         line-width: 2.5;
       }
-      [zoom >= 17] { line-width: 4; }
+      [zoom >= 17] { line-width: 3; }
       [zoom >= 18] { line-width: 6; }
       [zoom >= 19] { line-width: 8; }
       [zoom >= 20] { line-width: 12; }

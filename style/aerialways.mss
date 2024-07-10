@@ -1,16 +1,16 @@
-@aerialway-color: #E9E293;
-@chairlift-color: desaturate(@aerialway-color, 15);
+@aerialway-color: #EAC249;
+@chairlift-color: @aerialway-color;
 
 #aerialways {
   [aerialway = 'cable_car'],
   [aerialway = 'gondola'],
   [aerialway = 'mixed_lift'] {
-    [zoom >= 12] {
-      line/line-width: 1;
+    [zoom >= 15] {
+      line/line-width: 1.5;
       line/line-join: round;
       line/line-cap: round;
       line/line-color: @aerialway-color;
-      line/line-opacity: .7;
+      line/line-opacity: 1;
 
       dash/line-width: 3;
       dash/line-join: round;
@@ -22,8 +22,8 @@
   }
 
   [aerialway = 'goods'] {
-    [zoom >= 12] {
-      line/line-width: 1;
+    [zoom >= 15] {
+      line/line-width: 1.5;
       line/line-join: round;
       line/line-cap: round;
       line/line-color: @aerialway-color;
@@ -43,12 +43,12 @@
   [aerialway = 'platter'],
   [aerialway = 'rope_tow'],
   [aerialway = 'zip_line'] {
-    [zoom >= 12] {
-      line/line-width: .8;
+    [zoom >= 15] {
+      line/line-width: 1;
       line/line-join: round;
       line/line-cap: round;
       line/line-color: @chairlift-color;
-      line/line-opacity: .7;
+      line/line-opacity: 1;
 
       dash/line-width: 3;
       dash/line-join: round;
@@ -59,7 +59,7 @@
   }
 
   [man_made = 'goods_conveyor'] {
-    [zoom >= 14] {
+    [zoom >= 15] {
       line/line-width: 0.7;
       line/line-join: round;
       line/line-cap: round;
@@ -79,7 +79,7 @@
   }
 
   [man_made = 'pipeline'] {
-    [zoom >= 14] {
+    [zoom >= 15] {
       line/line-width: .7;
       line/line-join: round;
       line/line-color: #909090;
@@ -146,11 +146,11 @@
   [feature = 'aerialway_rope_tow'],
   [feature = 'aerialway_zip_line'],
   [feature = 'man_made_pipeline'] {
-    [zoom >= 17] {
+    [zoom >= 16] {
       text-name: "[name]";
       text-fill: @aerialway-color;
       text-size: 10;
-      text-dy: 4;
+      text-dy: 9;
       text-spacing: 900;
       text-clip: false;
       text-placement: line;

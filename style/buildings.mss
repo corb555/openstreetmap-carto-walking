@@ -8,121 +8,128 @@
 // Some buildings are also filled in landcover.mss
 // Museum, Transit, and Religious get special fill
 
+@build-zoom: 16;
+
 #buildings {
-  [zoom >= 16]    {
-    polygon-fill: @building-low-zoom;
-    polygon-clip: false;
-    [zoom >= 16] {
-       opacity: 1;
-       polygon-fill: @building-fill;
-    }
-    [zoom >= 16] {
-        line-width: .8;
-        line-color: @building-line;
+  [zoom >= @build-zoom]    {
+    // STANDARD BUILDING
+
+    /*
+    [zoom >= 16] [building = 'apartments']  ,
+    [zoom >= @build-zoom] [building = 'dormitory']  ,
+    [zoom >= @build-zoom] [building = 'cathedral']  ,
+    [zoom >= 16] [building = 'hotel']  ,
+    [zoom >= 16] [tourism = 'hotel'] ,
+    [zoom >= @build-zoom] [building = 'retail']  ,
+    [zoom >= @build-zoom] [building = 'barn']  ,
+    [zoom >= @build-zoom] [building = 'industrial']  ,
+    [zoom >= @build-zoom] [building = 'commercial']  ,
+    [zoom >= @build-zoom] [building = 'residential']  ,
+    [zoom >= 16] [building = 'hangar']  ,
+    [zoom >= @build-zoom] [building = 'house'] ,
+    [zoom >= @build-zoom] [building = 'church']  ,
+    [zoom >= @build-zoom] [building = 'government']  ,
+    [zoom >= @build-zoom] [building = 'public']  ,
+    [zoom >= @build-zoom] [building = 'office']  ,
+    [zoom >= @build-zoom] [building = 'yes']    {
+    */
+
+    // Any building
+    [zoom >= @build-zoom] [building =~ '\w+']    {
+       polygon-clip: false;
+
+       [building = 'yes'] ,
+       [building = 'house'] {
+         polygon-fill: @building-fill;
+         line-color: darken(@building-fill, 7);
+         line-width: .8;
+         }
+
+       [building = 'barn']    {
+              polygon-fill: #D4CCBB;
+              line-color: darken(#D4CCBB, 15);
+              }
+
+       // Zoom  use different colors based on type
+       [building != 'yes'] [building != 'house'] {
+           line-width: .8;
+           polygon-fill: @building-fill;
+           line-color: darken(@building-fill, 7);
+
+          [building = 'industrial'] {
+             polygon-fill: darken(@industrial, 8);
+             line-color: darken(@industrial, 20);
+          }
+
+          [building = 'church']  ,
+          [building = 'cathedral']  ,
+          [building = 'hotel']  ,
+          [tourism = 'hotel']    {
+            polygon-fill: darken(@building-fill, 2);
+            line-color: darken(@building-fill, 15);
+          }
+       }
+
+       [ruins = 'yes'] {
+          line-width: .6;
+          line-color: #6A6A6A;
+          }
+
     }
 
-    [building = 'museum'] {
-      opacity: 1;
-      polygon-fill: @landmark-building-layer;
-      line-width: .6;
-      line-opacity: .6;
-      line-color: @landmark-outline;
-      //line-pattern-file:url(img/line_solid_6.png);
-
+    // LANDMARK
+    [amenity = 'stock_exchange'] ,
+    [amenity = 'theatre'] ,
+    [amenity = 'events_venue'] ,
+    [amenity = 'arts_centre'] ,
+    [amenity = 'exhibition_centre'] ,
+    [amenity = 'conference_centre'],
+    [tourism = 'information'] ,
+    [tourism = 'museum'] ,
+    [tourism = 'attraction'] ,
+    [tourism = 'gallery'] ,
+    [building = 'university'] ,
+    [building = 'college'] ,
+    [building = 'school'] ,
+    [building = 'stadium'] ,
+    [building = 'hospital'] ,
+    [amenity = 'townhall'] ,
+    [building = 'museum']
+       {
+       building-fill: @landmark;
+       building-height: 2;
+       [building = 'hospital']      {
+         building-fill: @hospital-fill;
+       }
     }
 
-    [building = 'temple'],
-    [building = 'church'],
-    [building = 'shrine'],
-    [building = 'cathedral'],
-    [building = 'mosque'],
-    [building = 'gurdwara'],
-    [building = 'synagogue'] {
-      opacity: 1;
-      polygon-fill: @religious-building;
-      [zoom >= 15] {
+    [amenity = 'parking'] [zoom >= 17] ,
+    [building = 'parking'] [zoom >= 17]
+       {
+       building-fill: @garages;
+       building-height: 1;
+    }
+
+    // SHIP
+    [building = 'ship'] {
+        polygon-fill: white;
         line-width: .6;
         line-color: @landmark-outline;
-        line-opacity: .6;
-      }
+        line-opacity: 1;
     }
 
+    // TRANSIT BUILDING
     [aeroway = 'terminal'],
-    [aerialway = 'station'],
+    //[building = 'transportation'],
     [building = 'train_station'],
     [public_transport = 'station'] {
-       opacity: 1;
-       polygon-fill: @building-transit;
-       [zoom >= 15] {
-         polygon-gamma: 0.2;
-         line-color: @building-major-line;
+       [location != 'underground'] {
+           building-fill: @building-transit;
+           building-height: 3;
        }
-    }
-
-    [building = 'parking']{
-      polygon-fill: lighten(@parking, 5);
-      [zoom >= 15] {
-        polygon-gamma: 0.2;
-        line-color: @building-major-line;
-      }
-    }
-
-    [building = 'transportation']{
-       opacity: 1;
-       polygon-fill: @building-fill;
-       [zoom >= 15] {
-         polygon-gamma: 0.2;
-         line-color: @building-major-line;
+       [location = 'underground'] {
+               polygon-fill: lighten(desaturate(@building-transit, 1), 20);
        }
     }
   }
 }
-
-/*
-#bridge {
-  [zoom >= 12] {
-    polygon-fill: #B8B8B8;
-  }
-}
-
-#entrances {
-  [zoom >= 18]["entrance" != null]  {
-    marker-fill: @entrance-normal;
-    marker-allow-overlap: true;
-    marker-ignore-placement: true;
-    marker-file: url('symbols/rect.svg');
-    marker-width: 5.0;
-    marker-height: 5.0;
-    marker-opacity: 0.0;
-    ["entrance" = "main"] {
-      marker-opacity: 1.0;
-      marker-file: url('symbols/square.svg');
-    }
-  }
-  [zoom >= 19]["entrance" != null] {
-    ["entrance" = "yes"],
-    ["entrance" = "main"],
-    ["entrance" = "home"],
-    ["entrance" = "service"],
-    ["entrance" = "staircase"] {
-      marker-opacity: 1.0;
-      marker-width: 6.0;
-      marker-height: 6.0;
-      ["entrance" = "service"] {
-        marker-file: url('symbols/corners.svg');
-      }
-    }
-    ["access" = "yes"],
-    ["access" = "permissive"] {
-      marker-fill: @entrance-permissive;
-    }
-    ["access" = "no"] {
-      marker-fill: @entrance-normal;
-      marker-file: url('symbols/rectdiag.svg');
-    }
-  }
-  [zoom >= 20]["entrance" != null] {
-    marker-width: 8.0;
-    marker-height: 8.0;
-  }
-} */
