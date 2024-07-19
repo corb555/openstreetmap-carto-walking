@@ -50,7 +50,7 @@
 @swamp: #DEE3C4;
 @wetland: #B3BEAF;
 @meadow: #E8E6D6;
-@grassland: #9FBE90;
+@grassland: #98BA8A;
 
 @grass: lighten(@park, 2);
 @forest: #3B7A30;
@@ -62,7 +62,7 @@
 @scrub: #DCDFCF;
 @allotments: @residential;
 @orchard: #8DB584; // also vineyard, plant_nursery
-@scree: #676767;
+@scree: #919191;
 @sand: #DFDBD1;
 @beach: #E9E6D1;
 
@@ -401,7 +401,7 @@
   [feature = 'natural_grassland'][zoom >= 8][way_pixels >= 400],
   [feature = 'landuse_meadow'][zoom >= 14] [way_pixels >= 400]{
     polygon-fill: @grassland;
-    polygon-opacity: .6;
+    polygon-opacity: .4;
     [way_pixels >= 4]  { polygon-gamma: 0.75; }
     [way_pixels >= 64] { polygon-gamma: 0.3;  }
   }
@@ -426,15 +426,9 @@
      }
     [zoom >= 12] {
        polygon-fill: @industrial;
-       polygon-opacity: 1;
+       polygon-opacity: .5;
        }
-    [zoom >= 16] {
-      line-width: .5;
-      line-color: @industrial-line;
-      [name != ''] {
-        line-width: 0.7;
-      }
-    }
+
     [way_pixels >= 4]  { polygon-gamma: 0.75; }
     [way_pixels >= 64] { polygon-gamma: 0.3;  }
   }
@@ -570,7 +564,7 @@
 
   [feature = 'landuse_landfill'] {
     [zoom >= 10] {
-      polygon-fill: #b6b592;
+      polygon-fill: #D5D4BC;
       [way_pixels >= 4]  { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
     }
@@ -586,7 +580,7 @@
 
   [feature = 'natural_bare_rock'][zoom >= 15] { //[way_pixels < 1000]{
     polygon-fill: @bare_ground;
-    polygon-opacity: .3;
+    polygon-opacity: .2;
     //comp-op: multiply;
 
     [way_pixels >= 4]  { polygon-gamma: 0.75; }
@@ -596,7 +590,7 @@
   [feature = 'natural_scree'],
   [feature = 'natural_shingle'] {
     [zoom >= 12] {
-    polygon-opacity: .1;
+    polygon-opacity: .2;
       polygon-fill: @scree;
       [way_pixels >= 4]  { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
@@ -608,7 +602,7 @@
   [landuse = 'volcanic_lava_field'],
   [landuse = 'volcanic_caldera_rim'] {
     [zoom >= 9] {
-    polygon-opacity: .6;
+    polygon-opacity: .2;
       polygon-fill: @scree;
       [way_pixels >= 4]  { polygon-gamma: 0.75; }
       [way_pixels >= 64] { polygon-gamma: 0.3;  }
@@ -842,9 +836,11 @@
 
   [feature = 'leisure_track'][zoom >= 10] {
     polygon-fill: @track;
+    polygon-opacity: .4;
     [zoom >= 15] {
-      line-width: 0.5;
-      line-color: desaturate(darken(@track, 20%), 10%);
+      line-width: 0.4;
+      line-opacity: .4;
+      line-color: @hiking-fill;
     }
     [way_pixels >= 4]  { polygon-gamma: 0.75; }
     [way_pixels >= 64] { polygon-gamma: 0.3;  }

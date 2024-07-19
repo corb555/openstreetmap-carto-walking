@@ -80,15 +80,15 @@
 @transportation-text: darken(@transit, 10);
 @shop-icon: #4C7686;
 
-@airtransport: #FDC243;
-@hiking: #E5BD4E;
+@airtransport: #F6B62B;
+@hiking: #F6B62B;
 @nature-text: @hiking;
 @bus_stop: #96A4D5;
 @office: #4863A0;
 @man-made-icon: #7F8491; //#8990A4;
 @advertising-grey: @man-made-icon;
 @barrier-icon: #807CBE;
-@landform-color: white; //#FFED97;
+@landform-color:  white; //#251C0B;//#FFED97;
 @protected-area: #008000;
 @aboriginal: #82643a;
 @tree-color: #82A285;
@@ -96,6 +96,7 @@
 @market: #2E809B;
 @hotel: #2E809B;
 @beach-text: #3E728F; //#1D6FA1;
+@beach-halo: #C5D4DD;
 
 @waterfall: #76B0DE;
 @waterfall-text: #607397;
@@ -167,7 +168,7 @@
            text-allow-overlap: false;
            text-fill: @beach-text; //@placenames; //@water-color; //#5C553C;
            text-halo-radius: 1;
-           text-halo-fill: #C9DCE8;
+           text-halo-fill: @beach-halo;
            text-size: @medium-font-size;
            marker-opacity: 1;
           marker-width: 10;
@@ -294,16 +295,16 @@
     }
   }
 
-  //[feature = 'amenity_bar'][zoom >= @city-item-zoom][zoom <= @minor-item-zoom],
-  [feature = 'amenity_biergarten'][zoom >= @minor-item-zoom] [zoom <= @minor-item-zoom],
-  [feature = 'amenity_cafe'][zoom >= @minor-item-zoom] [zoom <= 18],
-  //[feature = 'amenity_fast_food'][zoom >= @city-item-zoom] [zoom <= 18],
-  [feature = 'amenity_internet_cafe'][zoom >= @city-item-zoom] [zoom <= @minor-item-zoom],
-  //[feature = 'amenity_ice_cream'][zoom >= @city-item-zoom][zoom <= @minor-item-zoom],
-  [feature = 'amenity_pub'][zoom >= @minor-item-zoom] [zoom <= @minor-item-zoom],
-  //[feature = 'amenity_nightclub'][zoom >= @city-item-zoom] [zoom <= @minor-item-zoom] ,
-  [feature = 'amenity_restaurant'][zoom >= @minor-item-zoom] [zoom <= 18] {
-     [zoom >= 14] [zoom < 18] {
+  //[feature = 'amenity_bar'][zoom >= @city-item-zoom][zoom < 17],
+  [feature = 'amenity_biergarten'][zoom >= @minor-item-zoom] [zoom < 17],
+  [feature = 'amenity_cafe'][zoom >= @minor-item-zoom] [zoom < 17],
+  //[feature = 'amenity_fast_food'][zoom >= @city-item-zoom] [zoom < 17],
+  [feature = 'amenity_internet_cafe'][zoom >= @city-item-zoom] [zoom < 17],
+  //[feature = 'amenity_ice_cream'][zoom >= @city-item-zoom][zoom < 17],
+  [feature = 'amenity_pub'][zoom >= @minor-item-zoom] [zoom < 17],
+  //[feature = 'amenity_nightclub'][zoom >= @city-item-zoom][zoom < 17] ,
+  [feature = 'amenity_restaurant'][zoom >= @minor-item-zoom] [zoom < 17] {
+     [zoom >= 14] [zoom < 17] {
           marker-opacity: @marker-op ;
           marker-width: @small-marker;
           marker-clip: true;
@@ -431,7 +432,7 @@
       text-line-spacing: @standard-line-spacing-size;
       text-fill: @beach-text; //@placenames; //@water-color; //#5C553C;
       text-halo-radius: 1;
-      text-halo-fill: #C9DCE8; //#F0ECDB; //@standard-halo-fill;
+      text-halo-fill: @beach-halo; //#F0ECDB; //@standard-halo-fill;
       text-face-name: @bold-fonts;
       text-dy: 15;
       }
@@ -483,7 +484,7 @@
   {
     marker-file: url('symbols/tourism/camping.svg');
     marker-fill: @hiking;
-    marker-height: @large-marker;
+    marker-height: @large-marker - 2;
     marker-clip: false;
   }
 
@@ -1201,7 +1202,7 @@
   [feature = 'aeroway_aerodrome']['iata' = null][zoom >= @county-item-zoom][zoom < 18] {
     [way_pixels > @med-building],
     [way_pixels = null] {
-        marker-width: 15;
+        marker-width: 18;
       marker-file: url('symbols/amenity/aerodrome.svg');
       marker-clip: false;
       marker-fill: @airtransport;
@@ -1222,11 +1223,11 @@
   }
 
   [feature = 'natural_peak'] {
-    [zoom >= 6] [score > 3200]{   // 1650]{
-        marker-opacity: .2; //[score] * 0.000179 + .41;
+    [zoom >= 6] [score > 1650] {
+        marker-opacity: .6; //[score] * 0.000179 + .41;
         marker-file: url('symbols/natural/peak.svg');
-        marker-fill: #71654C; //@landform-color;
-        marker-width: 4; //[score] * 0.00167 + 5;
+        marker-fill: #251C0B; //@landform-color;
+        marker-width: 7; //[score] * 0.00167 + 5;
         [score > 2300]{
             marker-opacity: .4;
             marker-width: 5;
@@ -1248,7 +1249,7 @@
     marker-width: 7;
     marker-opacity: .7;
     [score > 50]{
-     marker-width: 5;
+     marker-width: 7;
      marker-opacity: 1;
      }
      [score > 500]{
@@ -1313,7 +1314,7 @@
     [zoom >= 16][height > 5],
      {
       marker-file: url('symbols/natural/waterfall.svg');
-      marker-width: 8 + [height] / 22;
+      marker-width: 7 + [height] / 16;
       marker-clip: false;
       marker-fill: @waterfall;
       marker-allow-overlap: true;
@@ -1587,7 +1588,7 @@
     //text-allow-overlap: true;
   }
 
-  [feature = 'amenity_nightclub'] [zoom >= @local-item-zoom],
+  //[feature = 'amenity_nightclub'] [zoom >= @local-item-zoom],
   [feature = 'amenity_pub'][zoom >= @minor-item-zoom],
   [feature = 'amenity_marketplace'][zoom >= 16][way_pixels > @small-area],
   [feature = 'amenity_marketplace'][zoom >= @minor-item-zoom] ,
@@ -1596,23 +1597,25 @@
   [feature = 'amenity_cafe'][zoom >= @minor-item-zoom],
   [feature = 'amenity_biergarten'][zoom >= @minor-item-zoom],
   [feature = 'amenity_bar'][zoom >= @minor-item-zoom],
-  [feature = 'amenity_boat_rental'][zoom >= 16],
-  [feature = 'amenity_ice_cream'][zoom >= @local-item-zoom] {
-    text-allow-overlap: true;
+  [feature = 'amenity_boat_rental'][zoom >= 16]{
+  //[feature = 'amenity_ice_cream'][zoom >= @local-item-zoom] {
+    text-allow-overlap: false;
     text-name: "[name]";
     text-fill: @gastronomy-text;
-    text-size: @standard-font-size ;
+    text-size: @standard-font-size - 3;
     text-wrap-width: @standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
     text-dy: 7;
     text-face-name: @standard-font;
   }
 
-  [feature = 'amenity_library'],
-  [feature = 'amenity_cinema'],
-  [feature = 'amenity_community_centre'],
-  [feature = 'amenity_nightclub'] {
-    [zoom >= 21] {
+[feature = 'shop'] [shop = 'mall'][zoom >= 16]{
+  //[feature = 'amenity_library'],
+  //[feature = 'amenity_cinema'],
+  //[feature = 'amenity_community_centre'],
+  //[feature = 'amenity_nightclub'] {
+    [zoom >= 16] {
+    text-allow-overlap: false;
       text-name: "[name]";
       text-size: @standard-font-size;
       text-wrap-width: @standard-wrap-width;
@@ -1717,7 +1720,7 @@
     [zoom >= 15][height > 8],
     [zoom >= 16][height > 5] {
       text-name: "[name]";
-      text-size: @standard-font-size - 1;
+      text-size: @standard-font-size - 3;
       text-wrap-width: @standard-wrap-width;
       text-line-spacing: @standard-line-spacing-size;
       text-dy: 12;
@@ -1934,7 +1937,7 @@
   }
 
   [feature = 'natural_mountain_range']  [zoom >= 5] [zoom < 13],
-  [feature = 'natural_peak']  [zoom >= @major-item-zoom],
+  [feature = 'natural_peak']  [zoom >= @major-item-zoom] [score > 1000],
   [feature = 'natural_valley']  [zoom >= @major-item-zoom],
   [feature = 'natural_peak']  [zoom >= @regional-item-zoom] [score > 3400],
   //[feature = 'natural_peak']  [zoom >= 8] [score > 3400],
@@ -1946,14 +1949,14 @@
   [feature = 'mountain_pass']  [zoom >= 13] [score > 1300],
   [feature = 'tourism_viewpoint'][zoom >= 14] {
     text-name: "[name]";
-    text-size: @small-font-size + 5;
+    text-size: @small-font-size + 4;
     text-wrap-width: 20; //@standard-wrap-width;
     text-line-spacing: @standard-line-spacing-size;
-    text-fill: @highlight;
+    text-fill: @landform-color; //@highlight;
     text-dy: 7;
     text-face-name: @standard-font;
     text-halo-radius: @standard-halo-radius;
-    text-halo-fill: @standard-halo-fill;
+    text-halo-fill: #939292;
 
     [feature = 'natural_mountain_range'],
     [feature = 'desert'],
@@ -1966,10 +1969,11 @@
             text-size: @standard-font-size;
     }
 
+    [feature = 'natural_peak'] ,
     [feature = 'natural_volcano'] {
        text-fill: black;
-       text-halo-fill: #D7D7D7;
-       text-allow-overlap: true;
+       text-halo-fill: #A3A3A3;
+       text-allow-overlap: false;
      }
   }
 
@@ -2016,7 +2020,6 @@
   [feature = 'landuse_farmyard'],
   [feature = 'landuse_farmland'],
   [feature = 'landuse_greenhouse_horticulture'],
-  //[feature = 'shop'] [shop = 'mall'][zoom > 21],
   [feature = 'landuse_salt_pond'],
   [feature = 'tourism_theme_park'],
   [feature = 'leisure_marina'],
@@ -2052,7 +2055,7 @@
         //text-line-spacing: @standard-line-spacing-size;
         //text-dy: 11;
         text-face-name: @bold-fonts;
-        text-allow-overlap: false;
+        text-allow-overlap: true;
         //text-halo-radius: .7;
         //text-halo-fill: #B49DCE;
 
@@ -2120,12 +2123,6 @@
       [feature = 'landuse_greenhouse_horticulture'] {
         text-fill: #20644C;
       }
-      [feature = 'shop'][shop = 'mall'],
-      [feature = 'landuse_retail'] {
-        text-allow-overlap: false;
-        text-fill: orange; //@market;
-        //text-size: @standard-font-size + 1;
-      }
 
       [feature = 'tourism_caravan_site'] {
         text-fill: darken(@campsite, 35%);
@@ -2159,7 +2156,7 @@
       [feature = 'natural_shoal'] {
          text-fill: @beach-text; //@placenames; //@water-color; //#5C553C;
          text-halo-radius: 1;
-         text-halo-fill: #C9DCE8; //#F0ECDB; //@standard-halo-fill;
+         text-halo-fill: @beach-halo; //#F0ECDB; //@standard-halo-fill;
          //text-halo-comp-op: lighten;
          text-size: @standard-font-size - 1;
       }

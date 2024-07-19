@@ -79,7 +79,7 @@ Layer:
   - id: hillshade2
     Datasource:
       type: raster
-      file: "/Users/mike/Documents/map_data/img/THING_relief.crs.tif"
+      file: "/Users/mike/Documents/map_data/img/WESTMAN_relief.crs.tif"
     geometry: raster
     properties:
        minzoom: 12

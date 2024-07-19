@@ -2,8 +2,7 @@
 
 ![screenshot](https://github.com/corb555/openstreetmap-carto-walking/blob/1fe3b736e584b62f742cadb9c64ec72148f3dbe2/seattle_z16.png)
 
-These map stylesheets emphasize a pedestrian view using CartoCSS style for OpenStreetMap data. 
-The map should tell a story of where it would be fun to explore.
+These map stylesheets emphasize a pedestrian view using CartoCSS style for OpenStreetMap data.
 
 **Style Overview:**
 
@@ -22,10 +21,10 @@ _Roads:_
 * Width and font size are used to indicate primary, secondary, residential, etc.
 
 _Buses and biking:_  
-* Cycleways and bus routes are not shown since they are complex and there are already dedicated styles  
+* Cycleways and bus routes are not shown since there are already map styles focused on these  
 
 _Borders:_  
-* No administrative borders or names are shown.
+* No administrative borders or administrative names are shown.
 
 # Installation  
 See [Installation](https://github.com/corb555/openstreetmap-carto-walking/blob/3c235f1ebef4ce4ac0e1ef6099e09885d8afbace/INSTALL.md)

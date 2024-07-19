@@ -50,7 +50,7 @@ Map {
 
 // High zoom color relief
 #hillshade2 {
-  [zoom >= 12][zoom <= 18] {
+  [zoom >= 12][zoom < 18] {
       raster-comp-op: multiply;
       raster-scaling:bilinear;
       raster-opacity: .7; //@hill_opacity;
@@ -67,7 +67,7 @@ Map {
         raster-opacity: 1;
       }
       [zoom >= 17] {
-        raster-opacity: 1;
+        raster-opacity: .6;
       }
    }
 }

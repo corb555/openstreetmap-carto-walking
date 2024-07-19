@@ -392,7 +392,7 @@ and for 'town'  it's 1000
   }
 }
 
-#protected-areas-text[zoom >= 13][way_pixels > 192000] {
+#protected-areas-text[zoom >= 21] {
   text-name: "[name]";
   text-face-name: @book-fonts;
   text-fill: @protected-area;
